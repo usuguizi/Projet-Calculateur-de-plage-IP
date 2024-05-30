@@ -22,8 +22,22 @@ namespace SAE_Réseau
             txtDéc2.TextChanged += txtDéc_TextChanged;
             txtDéc3.TextChanged += txtDéc_TextChanged;
             txtDéc4.TextChanged += txtDéc_TextChanged;
+
+            // Associer les événements KeyPress pour les TextBox de l'adresse IP
+            txtDéc1.KeyPress += txtDéc_KeyPress;
+            txtDéc2.KeyPress += txtDéc_KeyPress;
+            txtDéc3.KeyPress += txtDéc_KeyPress;
+            txtDéc4.KeyPress += txtDéc_KeyPress;
+
+            // Associer les événements KeyPress pour les TextBox du masque
+            txtMas1.KeyPress += txtDéc_KeyPress;
+            txtMas2.KeyPress += txtDéc_KeyPress;
+            txtMas3.KeyPress += txtDéc_KeyPress;
+            txtMas4.KeyPress += txtDéc_KeyPress;
+
             lblerr.Visible = false; // Masquer le label d'erreur par défaut
         }
+
 
 
 
@@ -100,6 +114,8 @@ namespace SAE_Réseau
                 txtCIDR.SelectionStart = txtCIDR.Text.Length; // Positionner le curseur à la fin
             }
 
+
+
             isUpdating = false;
         }
 
@@ -119,6 +135,7 @@ namespace SAE_Réseau
                 // Reset the CIDR field if the mask input is invalid
                 txtCIDR.Text = "";
             }
+
 
             CheckForErrors();
             isUpdating = false;
@@ -164,6 +181,77 @@ namespace SAE_Réseau
         private int MasqueVersCIDR(string masque)
         {
             return masque.Split('.').Select(s => int.Parse(s)).Sum(b => Convert.ToString(b, 2).Count(c => c == '1'));
+        }
+
+        private void txtDéc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox currentTextBox = sender as TextBox;
+
+            if (currentTextBox == null)
+                return;
+
+            // Vérifier si la touche appuyée est "Entrée"
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true; // Empêcher le son de "ding"
+                PasserAuProchainTexBox(currentTextBox);
+            }
+            else
+            {
+                // Si ce n'est pas une touche numérique, annuler l'entrée
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    // Vérifier si trois chiffres sont déjà entrés
+                    if (currentTextBox.Text.Length >= 2 && char.IsDigit(e.KeyChar))
+                    {
+                        currentTextBox.Text += e.KeyChar; // Ajouter le chiffre
+                        e.Handled = true; // Annuler l'entrée car elle est déjà ajoutée
+                        PasserAuProchainTexBox(currentTextBox);
+                    }
+                }
+            }
+        }
+
+        private void PasserAuProchainTexBox(TextBox currentTextBox)
+        {
+            // Adresses IP
+            if (currentTextBox == txtDéc1)
+            {
+                txtDéc2.Focus();
+            }
+            else if (currentTextBox == txtDéc2)
+            {
+                txtDéc3.Focus();
+            }
+            else if (currentTextBox == txtDéc3)
+            {
+                txtDéc4.Focus();
+            }
+            else if (currentTextBox == txtDéc4)
+            {
+                txtMas1.Focus(); // Passer au masque après la dernière IP
+            }
+            // Masque
+            else if (currentTextBox == txtMas1)
+            {
+                txtMas2.Focus();
+            }
+            else if (currentTextBox == txtMas2)
+            {
+                txtMas3.Focus();
+            }
+            else if (currentTextBox == txtMas3)
+            {
+                txtMas4.Focus();
+            }
+            else if (currentTextBox == txtMas4)
+            {
+                txtCIDR.Focus(); // Retourner au CIDR après le dernier octet du masque
+            }
         }
 
 

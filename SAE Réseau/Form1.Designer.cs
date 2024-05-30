@@ -63,6 +63,7 @@
             txtDéc1.TabIndex = 0;
             txtDéc1.Tag = "txtBin1";
             txtDéc1.TextChanged += txtDéc_TextChanged;
+            txtDéc1.KeyPress += txtDéc_KeyPress;
             // 
             // grpSaisie
             // 
@@ -151,6 +152,7 @@
             // 
             txtHéx4.Location = new Point(640, 349);
             txtHéx4.Name = "txtHéx4";
+            txtHéx4.ReadOnly = true;
             txtHéx4.Size = new Size(150, 31);
             txtHéx4.TabIndex = 16;
             // 
@@ -158,6 +160,7 @@
             // 
             txtHéx3.Location = new Point(462, 349);
             txtHéx3.Name = "txtHéx3";
+            txtHéx3.ReadOnly = true;
             txtHéx3.Size = new Size(150, 31);
             txtHéx3.TabIndex = 15;
             // 
@@ -165,6 +168,7 @@
             // 
             txtHéx2.Location = new Point(288, 349);
             txtHéx2.Name = "txtHéx2";
+            txtHéx2.ReadOnly = true;
             txtHéx2.Size = new Size(150, 31);
             txtHéx2.TabIndex = 14;
             // 
@@ -172,6 +176,7 @@
             // 
             txtHéx1.Location = new Point(107, 349);
             txtHéx1.Name = "txtHéx1";
+            txtHéx1.ReadOnly = true;
             txtHéx1.Size = new Size(150, 31);
             txtHéx1.TabIndex = 13;
             // 
@@ -179,6 +184,7 @@
             // 
             txtBin4.Location = new Point(640, 222);
             txtBin4.Name = "txtBin4";
+            txtBin4.ReadOnly = true;
             txtBin4.Size = new Size(150, 31);
             txtBin4.TabIndex = 12;
             txtBin4.Tag = "txtHéx4";
@@ -187,6 +193,7 @@
             // 
             txtBin3.Location = new Point(462, 222);
             txtBin3.Name = "txtBin3";
+            txtBin3.ReadOnly = true;
             txtBin3.Size = new Size(150, 31);
             txtBin3.TabIndex = 11;
             txtBin3.Tag = "txtHéx3";
@@ -195,6 +202,7 @@
             // 
             txtBin2.Location = new Point(288, 222);
             txtBin2.Name = "txtBin2";
+            txtBin2.ReadOnly = true;
             txtBin2.Size = new Size(150, 31);
             txtBin2.TabIndex = 10;
             txtBin2.Tag = "txtHéx2";
@@ -203,6 +211,7 @@
             // 
             txtBin1.Location = new Point(107, 222);
             txtBin1.Name = "txtBin1";
+            txtBin1.ReadOnly = true;
             txtBin1.Size = new Size(150, 31);
             txtBin1.TabIndex = 9;
             txtBin1.Tag = "txtHéx1";
@@ -215,6 +224,7 @@
             txtDéc4.TabIndex = 8;
             txtDéc4.Tag = "txtBin4";
             txtDéc4.TextChanged += txtDéc_TextChanged;
+            txtDéc4.KeyPress += txtDéc_KeyPress;
             // 
             // txtDéc3
             // 
@@ -224,6 +234,7 @@
             txtDéc3.TabIndex = 7;
             txtDéc3.Tag = "txtBin3";
             txtDéc3.TextChanged += txtDéc_TextChanged;
+            txtDéc3.KeyPress += txtDéc_KeyPress;
             // 
             // txtDéc2
             // 
@@ -233,6 +244,7 @@
             txtDéc2.TabIndex = 6;
             txtDéc2.Tag = "txtBin2";
             txtDéc2.TextChanged += txtDéc_TextChanged;
+            txtDéc2.KeyPress += txtDéc_KeyPress;
             // 
             // label3
             // 
@@ -278,6 +290,7 @@
             Controls.Add(groupBox2);
             Controls.Add(grpSaisie);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             grpSaisie.ResumeLayout(false);
             grpSaisie.PerformLayout();
