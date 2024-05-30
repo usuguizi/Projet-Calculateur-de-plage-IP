@@ -18,22 +18,14 @@ namespace SAE_Réseau
             txtMas2.TextChanged += txtMas_TextChanged;
             txtMas3.TextChanged += txtMas_TextChanged;
             txtMas4.TextChanged += txtMas_TextChanged;
+            txtDéc1.TextChanged += txtDéc_TextChanged;
+            txtDéc2.TextChanged += txtDéc_TextChanged;
+            txtDéc3.TextChanged += txtDéc_TextChanged;
+            txtDéc4.TextChanged += txtDéc_TextChanged;
+            lblerr.Visible = false; // Masquer le label d'erreur par défaut
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtDéc_TextChanged(object sender, EventArgs e)
         {
@@ -65,6 +57,8 @@ namespace SAE_Réseau
                 bin.Text = DecimalVersBinaire(255);
                 hex.Text = DecimalVersHex(255);
             }
+
+            CheckForErrors();
         }
 
         private void txtCIDR_TextChanged(object sender, EventArgs e)
@@ -109,7 +103,6 @@ namespace SAE_Réseau
             isUpdating = false;
         }
 
-
         private void txtMas_TextChanged(object sender, EventArgs e)
         {
             if (isUpdating) return; // Éviter les boucles d'événements
@@ -127,36 +120,29 @@ namespace SAE_Réseau
                 txtCIDR.Text = "";
             }
 
+            CheckForErrors();
             isUpdating = false;
         }
 
-        private void MettreAJourConversionsDepuisDécimal()
+        private void CheckForErrors()
         {
-            // Convertir depuis le décimal vers le binaire et l'hexadécimal
-            string bin = DecimalVersBinaire(int.Parse(txtDéc1.Text));
-            string hex = DecimalVersHex(int.Parse(txtDéc1.Text));
+            lblerr.Visible = false; // Masquer le label d'erreur par défaut
 
-            // Mettre à jour les TextBox liées
-            txtBin1.Text = bin;
-            txtHéx1.Text = hex;
-
-            // Mettre à jour le masque en notation CIDR
-            txtCIDR.Text = $"/{MasqueVersCIDR(txtMas1.Text)}";
-        }
-
-        private void MettreAJourMasqueDepuisCIDR()
-        {
-            // Convertir la notation CIDR en masque de sous-réseau
-            string masque = CIDRVersMasque(int.Parse(txtCIDR.Text.Split('/')[1]));
-
-            // Mettre à jour le TextBox lié
-            txtMas1.Text = masque;
-        }
-
-        private void MettreAJourCIDRDepuisMasque()
-        {
-            // Convertir le masque de sous-réseau en notation CIDR
-            txtCIDR.Text = $"/{MasqueVersCIDR(txtMas1.Text)}";
+            // Vérifier les adresses IP non utilisables
+            if (int.TryParse(txtDéc1.Text, out int dec1) && int.TryParse(txtDéc2.Text, out int dec2) &&
+                int.TryParse(txtDéc3.Text, out int dec3) && int.TryParse(txtDéc4.Text, out int dec4))
+            {
+                if (dec1 == 0 || dec1 == 127 || (dec1 == 169 && dec2 == 254))
+                {
+                    lblerr.Text = "Adresse IP non utilisable.";
+                    lblerr.Visible = true;
+                }
+                else if (dec1 == 10 || (dec1 == 172 && dec2 >= 16 && dec2 <= 31) || (dec1 == 192 && dec2 == 168))
+                {
+                    lblerr.Text = "Adresse IP non routable.";
+                    lblerr.Visible = true;
+                }
+            }
         }
 
         private string DecimalVersBinaire(int dec)
@@ -180,9 +166,6 @@ namespace SAE_Réseau
             return masque.Split('.').Select(s => int.Parse(s)).Sum(b => Convert.ToString(b, 2).Count(c => c == '1'));
         }
 
-        private void txtMas(object sender, EventArgs e)
-        {
 
-        }
     }
 }

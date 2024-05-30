@@ -30,6 +30,7 @@
         {
             txtDéc1 = new TextBox();
             grpSaisie = new GroupBox();
+            lblerr = new Label();
             label4 = new Label();
             txtMas4 = new TextBox();
             txtMas3 = new TextBox();
@@ -65,6 +66,7 @@
             // 
             // grpSaisie
             // 
+            grpSaisie.Controls.Add(lblerr);
             grpSaisie.Controls.Add(label4);
             grpSaisie.Controls.Add(txtMas4);
             grpSaisie.Controls.Add(txtMas3);
@@ -91,7 +93,14 @@
             grpSaisie.Size = new Size(868, 529);
             grpSaisie.TabIndex = 1;
             grpSaisie.TabStop = false;
-            grpSaisie.Text = "IPV 4";
+            // 
+            // lblerr
+            // 
+            lblerr.AutoSize = true;
+            lblerr.Location = new Point(125, 151);
+            lblerr.Name = "lblerr";
+            lblerr.Size = new Size(0, 25);
+            lblerr.TabIndex = 23;
             // 
             // label4
             // 
@@ -108,7 +117,6 @@
             txtMas4.Name = "txtMas4";
             txtMas4.Size = new Size(119, 31);
             txtMas4.TabIndex = 21;
-            txtMas4.TextChanged += txtMas;
             // 
             // txtMas3
             // 
@@ -116,7 +124,6 @@
             txtMas3.Name = "txtMas3";
             txtMas3.Size = new Size(119, 31);
             txtMas3.TabIndex = 20;
-            txtMas3.TextChanged += txtMas;
             // 
             // txtMas2
             // 
@@ -124,7 +131,6 @@
             txtMas2.Name = "txtMas2";
             txtMas2.Size = new Size(119, 31);
             txtMas2.TabIndex = 19;
-            txtMas2.TextChanged += txtMas;
             // 
             // txtMas1
             // 
@@ -132,7 +138,6 @@
             txtMas1.Name = "txtMas1";
             txtMas1.Size = new Size(119, 31);
             txtMas1.TabIndex = 18;
-            txtMas1.TextChanged += txtMas;
             // 
             // txtCIDR
             // 
@@ -255,7 +260,6 @@
             lblDécimal.Size = new Size(75, 25);
             lblDécimal.TabIndex = 3;
             lblDécimal.Text = "Décimal";
-            lblDécimal.Click += label1_Click;
             // 
             // groupBox2
             // 
@@ -265,7 +269,6 @@
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = " ";
-            groupBox2.Enter += groupBox2_Enter;
             // 
             // Form1
             // 
@@ -276,7 +279,6 @@
             Controls.Add(grpSaisie);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             grpSaisie.ResumeLayout(false);
             grpSaisie.PerformLayout();
             ResumeLayout(false);
@@ -307,5 +309,6 @@
         private TextBox txtMas2;
         private TextBox txtMas1;
         private Label label4;
+        private Label lblerr;
     }
 }
