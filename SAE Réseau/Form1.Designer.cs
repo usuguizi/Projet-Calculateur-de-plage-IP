@@ -63,7 +63,6 @@
             txtDéc1.TabIndex = 0;
             txtDéc1.Tag = "txtBin1";
             txtDéc1.TextChanged += txtDéc_TextChanged;
-            txtDéc1.KeyPress += txtDéc_KeyPress;
             // 
             // grpSaisie
             // 
@@ -100,8 +99,9 @@
             lblerr.AutoSize = true;
             lblerr.Location = new Point(125, 151);
             lblerr.Name = "lblerr";
-            lblerr.Size = new Size(0, 25);
+            lblerr.Size = new Size(46, 25);
             lblerr.TabIndex = 23;
+            lblerr.Text = "caca";
             // 
             // label4
             // 
@@ -224,7 +224,6 @@
             txtDéc4.TabIndex = 8;
             txtDéc4.Tag = "txtBin4";
             txtDéc4.TextChanged += txtDéc_TextChanged;
-            txtDéc4.KeyPress += txtDéc_KeyPress;
             // 
             // txtDéc3
             // 
@@ -234,7 +233,6 @@
             txtDéc3.TabIndex = 7;
             txtDéc3.Tag = "txtBin3";
             txtDéc3.TextChanged += txtDéc_TextChanged;
-            txtDéc3.KeyPress += txtDéc_KeyPress;
             // 
             // txtDéc2
             // 
@@ -244,7 +242,6 @@
             txtDéc2.TabIndex = 6;
             txtDéc2.Tag = "txtBin2";
             txtDéc2.TextChanged += txtDéc_TextChanged;
-            txtDéc2.KeyPress += txtDéc_KeyPress;
             // 
             // label3
             // 
