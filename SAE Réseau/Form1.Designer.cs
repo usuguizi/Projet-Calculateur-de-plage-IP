@@ -108,7 +108,7 @@
             txtMas4.Name = "txtMas4";
             txtMas4.Size = new Size(119, 31);
             txtMas4.TabIndex = 21;
-            txtMas4.TextChanged += textBox17_TextChanged;
+            txtMas4.TextChanged += txtMas;
             // 
             // txtMas3
             // 
@@ -116,7 +116,7 @@
             txtMas3.Name = "txtMas3";
             txtMas3.Size = new Size(119, 31);
             txtMas3.TabIndex = 20;
-            txtMas3.TextChanged += txtMas3_TextChanged;
+            txtMas3.TextChanged += txtMas;
             // 
             // txtMas2
             // 
@@ -124,7 +124,7 @@
             txtMas2.Name = "txtMas2";
             txtMas2.Size = new Size(119, 31);
             txtMas2.TabIndex = 19;
-            txtMas2.TextChanged += txtMas2_TextChanged;
+            txtMas2.TextChanged += txtMas;
             // 
             // txtMas1
             // 
@@ -132,7 +132,7 @@
             txtMas1.Name = "txtMas1";
             txtMas1.Size = new Size(119, 31);
             txtMas1.TabIndex = 18;
-            txtMas1.TextChanged += txtMas1_TextChanged;
+            txtMas1.TextChanged += txtMas;
             // 
             // txtCIDR
             // 
@@ -176,6 +176,7 @@
             txtBin4.Name = "txtBin4";
             txtBin4.Size = new Size(150, 31);
             txtBin4.TabIndex = 12;
+            txtBin4.Tag = "txtHéx4";
             // 
             // txtBin3
             // 
@@ -183,6 +184,7 @@
             txtBin3.Name = "txtBin3";
             txtBin3.Size = new Size(150, 31);
             txtBin3.TabIndex = 11;
+            txtBin3.Tag = "txtHéx3";
             // 
             // txtBin2
             // 
@@ -190,6 +192,7 @@
             txtBin2.Name = "txtBin2";
             txtBin2.Size = new Size(150, 31);
             txtBin2.TabIndex = 10;
+            txtBin2.Tag = "txtHéx2";
             // 
             // txtBin1
             // 
@@ -197,6 +200,7 @@
             txtBin1.Name = "txtBin1";
             txtBin1.Size = new Size(150, 31);
             txtBin1.TabIndex = 9;
+            txtBin1.Tag = "txtHéx1";
             // 
             // txtDéc4
             // 

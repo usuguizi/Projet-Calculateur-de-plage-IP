@@ -1,12 +1,23 @@
+using System;
+using System.Linq;
 using System.Net.NetworkInformation;
+using System.Windows.Forms;
 
 namespace SAE_Réseau
 {
     public partial class Form1 : Form
     {
+        private bool isUpdating = false; // Indicateur pour éviter les boucles d'événements
+
         public Form1()
         {
             InitializeComponent();
+            // Associer les événements TextChanged
+            txtCIDR.TextChanged += txtCIDR_TextChanged;
+            txtMas1.TextChanged += txtMas_TextChanged;
+            txtMas2.TextChanged += txtMas_TextChanged;
+            txtMas3.TextChanged += txtMas_TextChanged;
+            txtMas4.TextChanged += txtMas_TextChanged;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -24,50 +35,99 @@ namespace SAE_Réseau
 
         }
 
-        private void textBox17_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtDéc_TextChanged(object sender, EventArgs e)
         {
             TextBox bouton = (TextBox)sender;
+
+            // Récupérer la TextBox binaire associée
             TextBox bin = (TextBox)grpSaisie.Controls[bouton.Tag.ToString()];
+
+            // Récupérer la TextBox hexadécimale associée à partir du tag de la TextBox binaire
+            TextBox hex = (TextBox)grpSaisie.Controls[bin.Tag.ToString()];
+
             int nb;
-            Int32.TryParse(bouton.Text,out nb);
+            Int32.TryParse(bouton.Text, out nb);
+
             if (!(string.IsNullOrEmpty(bouton.Text)))
             {
                 bin.Text = DecimalVersBinaire(nb);
+                hex.Text = DecimalVersHex(nb);
             }
             else
             {
                 bin.Text = "";
+                hex.Text = "";
             }
-            if(nb > 255)
+
+            if (nb > 255)
             {
                 bouton.Text = "255";
                 bin.Text = DecimalVersBinaire(255);
+                hex.Text = DecimalVersHex(255);
             }
         }
 
         private void txtCIDR_TextChanged(object sender, EventArgs e)
         {
+            if (isUpdating) return; // Éviter les boucles d'événements
+            isUpdating = true;
 
+            TextBox txtCIDR = (TextBox)sender;
+
+            string cidrText = txtCIDR.Text;
+
+            if (cidrText.StartsWith("/"))
+            {
+                cidrText = cidrText.Substring(1);
+            }
+
+            int cidr;
+            if (int.TryParse(cidrText, out cidr) && cidr >= 0 && cidr <= 32)
+            {
+                string masque = CIDRVersMasque(cidr);
+                string[] octets = masque.Split('.');
+                txtMas1.Text = octets[0];
+                txtMas2.Text = octets[1];
+                txtMas3.Text = octets[2];
+                txtMas4.Text = octets[3];
+            }
+            else
+            {
+                // Reset the mask fields if the CIDR input is invalid
+                txtMas1.Text = "";
+                txtMas2.Text = "";
+                txtMas3.Text = "";
+                txtMas4.Text = "";
+            }
+
+            if (!txtCIDR.Text.StartsWith("/"))
+            {
+                txtCIDR.Text = "/" + txtCIDR.Text;
+                txtCIDR.SelectionStart = txtCIDR.Text.Length; // Positionner le curseur à la fin
+            }
+
+            isUpdating = false;
         }
 
-        private void txtMas1_TextChanged(object sender, EventArgs e)
+
+        private void txtMas_TextChanged(object sender, EventArgs e)
         {
+            if (isUpdating) return; // Éviter les boucles d'événements
+            isUpdating = true;
 
-        }
+            if (int.TryParse(txtMas1.Text, out int octet1) && int.TryParse(txtMas2.Text, out int octet2) &&
+                int.TryParse(txtMas3.Text, out int octet3) && int.TryParse(txtMas4.Text, out int octet4))
+            {
+                string masque = $"{octet1}.{octet2}.{octet3}.{octet4}";
+                txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
+            }
+            else
+            {
+                // Reset the CIDR field if the mask input is invalid
+                txtCIDR.Text = "";
+            }
 
-        private void txtMas2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtMas3_TextChanged(object sender, EventArgs e)
-        {
-
+            isUpdating = false;
         }
 
         private void MettreAJourConversionsDepuisDécimal()
@@ -83,9 +143,6 @@ namespace SAE_Réseau
             // Mettre à jour le masque en notation CIDR
             txtCIDR.Text = $"/{MasqueVersCIDR(txtMas1.Text)}";
         }
-
-
-
 
         private void MettreAJourMasqueDepuisCIDR()
         {
@@ -112,9 +169,6 @@ namespace SAE_Réseau
             return dec.ToString("X2");
         }
 
-
-
-
         private string CIDRVersMasque(int cidr)
         {
             uint mask = 0xffffffff << (32 - cidr);
@@ -124,6 +178,11 @@ namespace SAE_Réseau
         private int MasqueVersCIDR(string masque)
         {
             return masque.Split('.').Select(s => int.Parse(s)).Sum(b => Convert.ToString(b, 2).Count(c => c == '1'));
+        }
+
+        private void txtMas(object sender, EventArgs e)
+        {
+
         }
     }
 }
