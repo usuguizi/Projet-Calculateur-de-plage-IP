@@ -59,6 +59,14 @@ namespace SAE_Réseau
             txtMas3.TextChanged += PremiereIp_TextChanged;
             txtMas4.TextChanged += PremiereIp_TextChanged;
 
+            txtDéc1.TextChanged += DerniereIp_TextChanged;
+            txtDéc2.TextChanged += DerniereIp_TextChanged;
+            txtDéc3.TextChanged += DerniereIp_TextChanged;
+            txtDéc4.TextChanged += DerniereIp_TextChanged;
+            txtMas1.TextChanged += DerniereIp_TextChanged;
+            txtMas2.TextChanged += DerniereIp_TextChanged;
+            txtMas3.TextChanged += DerniereIp_TextChanged;
+            txtMas4.TextChanged += DerniereIp_TextChanged;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -472,6 +480,27 @@ namespace SAE_Réseau
                 txtPremIP2.Text = "";
                 txtPremIP3.Text = "";
                 txtPremIP4.Text = "";
+            }
+        }
+
+
+        private void DerniereIp_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtBro1.Text, out int broad1) && int.TryParse(txtBro2.Text, out int broad2) &&
+                int.TryParse(txtBro3.Text, out int broad3) && int.TryParse(txtBro4.Text, out int broad4))
+            {
+                // Soustraction d'un pour obtenir la dernière adresse IP utilisable
+                txtDerIP1.Text = broad1.ToString();
+                txtDerIP2.Text = broad2.ToString();
+                txtDerIP3.Text = broad3.ToString();
+                txtDerIP14.Text = (broad4 - 1).ToString();
+            }
+            else
+            {
+                txtDerIP1.Text = "";
+                txtDerIP2.Text = "";
+                txtDerIP3.Text = "";
+                txtDerIP14.Text = "";
             }
         }
     }

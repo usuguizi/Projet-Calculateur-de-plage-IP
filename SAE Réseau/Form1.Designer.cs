@@ -53,10 +53,10 @@
             label2 = new Label();
             lblDécimal = new Label();
             CalculAutomatique = new GroupBox();
-            textBox14 = new TextBox();
-            textBox15 = new TextBox();
-            textBox16 = new TextBox();
-            textBox17 = new TextBox();
+            txtDerIP14 = new TextBox();
+            txtDerIP3 = new TextBox();
+            txtDerIP2 = new TextBox();
+            txtDerIP1 = new TextBox();
             txtPremIP4 = new TextBox();
             txtPremIP3 = new TextBox();
             txtPremIP2 = new TextBox();
@@ -311,10 +311,10 @@
             // 
             // CalculAutomatique
             // 
-            CalculAutomatique.Controls.Add(textBox14);
-            CalculAutomatique.Controls.Add(textBox15);
-            CalculAutomatique.Controls.Add(textBox16);
-            CalculAutomatique.Controls.Add(textBox17);
+            CalculAutomatique.Controls.Add(txtDerIP14);
+            CalculAutomatique.Controls.Add(txtDerIP3);
+            CalculAutomatique.Controls.Add(txtDerIP2);
+            CalculAutomatique.Controls.Add(txtDerIP1);
             CalculAutomatique.Controls.Add(txtPremIP4);
             CalculAutomatique.Controls.Add(txtPremIP3);
             CalculAutomatique.Controls.Add(txtPremIP2);
@@ -340,33 +340,37 @@
             CalculAutomatique.TabStop = false;
             CalculAutomatique.Text = " ";
             // 
-            // textBox14
+            // txtDerIP14
             // 
-            textBox14.Location = new Point(741, 377);
-            textBox14.Name = "textBox14";
-            textBox14.Size = new Size(150, 31);
-            textBox14.TabIndex = 21;
+            txtDerIP14.Location = new Point(741, 377);
+            txtDerIP14.Name = "txtDerIP14";
+            txtDerIP14.Size = new Size(150, 31);
+            txtDerIP14.TabIndex = 21;
+            txtDerIP14.TextChanged += DerniereIp_TextChanged;
             // 
-            // textBox15
+            // txtDerIP3
             // 
-            textBox15.Location = new Point(557, 377);
-            textBox15.Name = "textBox15";
-            textBox15.Size = new Size(150, 31);
-            textBox15.TabIndex = 20;
+            txtDerIP3.Location = new Point(557, 377);
+            txtDerIP3.Name = "txtDerIP3";
+            txtDerIP3.Size = new Size(150, 31);
+            txtDerIP3.TabIndex = 20;
+            txtDerIP3.TextChanged += DerniereIp_TextChanged;
             // 
-            // textBox16
+            // txtDerIP2
             // 
-            textBox16.Location = new Point(376, 377);
-            textBox16.Name = "textBox16";
-            textBox16.Size = new Size(150, 31);
-            textBox16.TabIndex = 19;
+            txtDerIP2.Location = new Point(376, 377);
+            txtDerIP2.Name = "txtDerIP2";
+            txtDerIP2.Size = new Size(150, 31);
+            txtDerIP2.TabIndex = 19;
+            txtDerIP2.TextChanged += DerniereIp_TextChanged;
             // 
-            // textBox17
+            // txtDerIP1
             // 
-            textBox17.Location = new Point(199, 377);
-            textBox17.Name = "textBox17";
-            textBox17.Size = new Size(150, 31);
-            textBox17.TabIndex = 18;
+            txtDerIP1.Location = new Point(199, 377);
+            txtDerIP1.Name = "txtDerIP1";
+            txtDerIP1.Size = new Size(150, 31);
+            txtDerIP1.TabIndex = 18;
+            txtDerIP1.TextChanged += DerniereIp_TextChanged;
             // 
             // txtPremIP4
             // 
@@ -569,10 +573,10 @@
         private TextBox txtClasse;
         private Label lblDernIP;
         private Label lblPremIP;
-        private TextBox textBox14;
-        private TextBox textBox15;
-        private TextBox textBox16;
-        private TextBox textBox17;
+        private TextBox txtDerIP14;
+        private TextBox txtDerIP3;
+        private TextBox txtDerIP2;
+        private TextBox txtDerIP1;
         private TextBox txtPremIP4;
         private TextBox txtPremIP3;
         private TextBox txtPremIP2;
