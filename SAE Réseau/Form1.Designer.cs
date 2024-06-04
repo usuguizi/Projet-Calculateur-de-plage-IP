@@ -30,6 +30,7 @@
         {
             txtDéc1 = new TextBox();
             grpSaisie = new GroupBox();
+            lblerr2 = new Label();
             lblerr = new Label();
             label4 = new Label();
             txtMas4 = new TextBox();
@@ -51,8 +52,31 @@
             label3 = new Label();
             label2 = new Label();
             lblDécimal = new Label();
-            groupBox2 = new GroupBox();
+            CalculAutomatique = new GroupBox();
+            textBox14 = new TextBox();
+            textBox15 = new TextBox();
+            textBox16 = new TextBox();
+            textBox17 = new TextBox();
+            textBox10 = new TextBox();
+            textBox11 = new TextBox();
+            textBox12 = new TextBox();
+            textBox13 = new TextBox();
+            textBox6 = new TextBox();
+            textBox7 = new TextBox();
+            textBox8 = new TextBox();
+            textBox9 = new TextBox();
+            txtNet4 = new TextBox();
+            txtNet3 = new TextBox();
+            txtNet2 = new TextBox();
+            txtNet1 = new TextBox();
+            txtClasse = new TextBox();
+            lblDernIP = new Label();
+            lblPremIP = new Label();
+            lblBroadcast = new Label();
+            lblNet = new Label();
+            lblClasse = new Label();
             grpSaisie.SuspendLayout();
+            CalculAutomatique.SuspendLayout();
             SuspendLayout();
             // 
             // txtDéc1
@@ -66,6 +90,7 @@
             // 
             // grpSaisie
             // 
+            grpSaisie.Controls.Add(lblerr2);
             grpSaisie.Controls.Add(lblerr);
             grpSaisie.Controls.Add(label4);
             grpSaisie.Controls.Add(txtMas4);
@@ -90,23 +115,37 @@
             grpSaisie.Controls.Add(txtDéc1);
             grpSaisie.Location = new Point(121, 26);
             grpSaisie.Name = "grpSaisie";
-            grpSaisie.Size = new Size(868, 529);
+            grpSaisie.Size = new Size(906, 515);
             grpSaisie.TabIndex = 1;
             grpSaisie.TabStop = false;
+            // 
+            // lblerr2
+            // 
+            lblerr2.AutoEllipsis = true;
+            lblerr2.AutoSize = true;
+            lblerr2.Location = new Point(199, 464);
+            lblerr2.Name = "lblerr2";
+            lblerr2.Size = new Size(68, 25);
+            lblerr2.TabIndex = 24;
+            lblerr2.Text = "Erreur2";
+            lblerr2.Visible = false;
+            lblerr2.TextChanged += txtMas_TextChanged;
+            lblerr2.Click += lblerr2_Click;
             // 
             // lblerr
             // 
             lblerr.AutoSize = true;
             lblerr.Location = new Point(125, 151);
             lblerr.Name = "lblerr";
-            lblerr.Size = new Size(46, 25);
+            lblerr.Size = new Size(58, 25);
             lblerr.TabIndex = 23;
-            lblerr.Text = "caca";
+            lblerr.Text = "Erreur";
+            lblerr.Click += lblerr_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(68, 410);
+            label4.Location = new Point(68, 387);
             label4.Name = "label4";
             label4.Size = new Size(52, 25);
             label4.TabIndex = 22;
@@ -114,35 +153,35 @@
             // 
             // txtMas4
             // 
-            txtMas4.Location = new Point(656, 453);
+            txtMas4.Location = new Point(655, 430);
             txtMas4.Name = "txtMas4";
             txtMas4.Size = new Size(119, 31);
             txtMas4.TabIndex = 21;
             // 
             // txtMas3
             // 
-            txtMas3.Location = new Point(508, 453);
+            txtMas3.Location = new Point(510, 430);
             txtMas3.Name = "txtMas3";
             txtMas3.Size = new Size(119, 31);
             txtMas3.TabIndex = 20;
             // 
             // txtMas2
             // 
-            txtMas2.Location = new Point(365, 453);
+            txtMas2.Location = new Point(365, 430);
             txtMas2.Name = "txtMas2";
             txtMas2.Size = new Size(119, 31);
             txtMas2.TabIndex = 19;
             // 
             // txtMas1
             // 
-            txtMas1.Location = new Point(218, 453);
+            txtMas1.Location = new Point(211, 430);
             txtMas1.Name = "txtMas1";
             txtMas1.Size = new Size(119, 31);
             txtMas1.TabIndex = 18;
             // 
             // txtCIDR
             // 
-            txtCIDR.Location = new Point(56, 453);
+            txtCIDR.Location = new Point(62, 430);
             txtCIDR.Name = "txtCIDR";
             txtCIDR.Size = new Size(78, 31);
             txtCIDR.TabIndex = 17;
@@ -150,7 +189,7 @@
             // 
             // txtHéx4
             // 
-            txtHéx4.Location = new Point(640, 349);
+            txtHéx4.Location = new Point(640, 335);
             txtHéx4.Name = "txtHéx4";
             txtHéx4.ReadOnly = true;
             txtHéx4.Size = new Size(150, 31);
@@ -158,7 +197,7 @@
             // 
             // txtHéx3
             // 
-            txtHéx3.Location = new Point(462, 349);
+            txtHéx3.Location = new Point(462, 335);
             txtHéx3.Name = "txtHéx3";
             txtHéx3.ReadOnly = true;
             txtHéx3.Size = new Size(150, 31);
@@ -166,7 +205,7 @@
             // 
             // txtHéx2
             // 
-            txtHéx2.Location = new Point(288, 349);
+            txtHéx2.Location = new Point(288, 335);
             txtHéx2.Name = "txtHéx2";
             txtHéx2.ReadOnly = true;
             txtHéx2.Size = new Size(150, 31);
@@ -174,7 +213,7 @@
             // 
             // txtHéx1
             // 
-            txtHéx1.Location = new Point(107, 349);
+            txtHéx1.Location = new Point(107, 335);
             txtHéx1.Name = "txtHéx1";
             txtHéx1.ReadOnly = true;
             txtHéx1.Size = new Size(150, 31);
@@ -270,27 +309,220 @@
             lblDécimal.TabIndex = 3;
             lblDécimal.Text = "Décimal";
             // 
-            // groupBox2
+            // CalculAutomatique
             // 
-            groupBox2.Location = new Point(121, 598);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(868, 385);
-            groupBox2.TabIndex = 2;
-            groupBox2.TabStop = false;
-            groupBox2.Text = " ";
+            CalculAutomatique.Controls.Add(textBox14);
+            CalculAutomatique.Controls.Add(textBox15);
+            CalculAutomatique.Controls.Add(textBox16);
+            CalculAutomatique.Controls.Add(textBox17);
+            CalculAutomatique.Controls.Add(textBox10);
+            CalculAutomatique.Controls.Add(textBox11);
+            CalculAutomatique.Controls.Add(textBox12);
+            CalculAutomatique.Controls.Add(textBox13);
+            CalculAutomatique.Controls.Add(textBox6);
+            CalculAutomatique.Controls.Add(textBox7);
+            CalculAutomatique.Controls.Add(textBox8);
+            CalculAutomatique.Controls.Add(textBox9);
+            CalculAutomatique.Controls.Add(txtNet4);
+            CalculAutomatique.Controls.Add(txtNet3);
+            CalculAutomatique.Controls.Add(txtNet2);
+            CalculAutomatique.Controls.Add(txtNet1);
+            CalculAutomatique.Controls.Add(txtClasse);
+            CalculAutomatique.Controls.Add(lblDernIP);
+            CalculAutomatique.Controls.Add(lblPremIP);
+            CalculAutomatique.Controls.Add(lblBroadcast);
+            CalculAutomatique.Controls.Add(lblNet);
+            CalculAutomatique.Controls.Add(lblClasse);
+            CalculAutomatique.Location = new Point(121, 557);
+            CalculAutomatique.Name = "CalculAutomatique";
+            CalculAutomatique.Size = new Size(906, 481);
+            CalculAutomatique.TabIndex = 2;
+            CalculAutomatique.TabStop = false;
+            CalculAutomatique.Text = " ";
+            // 
+            // textBox14
+            // 
+            textBox14.Location = new Point(741, 377);
+            textBox14.Name = "textBox14";
+            textBox14.Size = new Size(150, 31);
+            textBox14.TabIndex = 21;
+            // 
+            // textBox15
+            // 
+            textBox15.Location = new Point(557, 377);
+            textBox15.Name = "textBox15";
+            textBox15.Size = new Size(150, 31);
+            textBox15.TabIndex = 20;
+            // 
+            // textBox16
+            // 
+            textBox16.Location = new Point(376, 377);
+            textBox16.Name = "textBox16";
+            textBox16.Size = new Size(150, 31);
+            textBox16.TabIndex = 19;
+            // 
+            // textBox17
+            // 
+            textBox17.Location = new Point(199, 377);
+            textBox17.Name = "textBox17";
+            textBox17.Size = new Size(150, 31);
+            textBox17.TabIndex = 18;
+            // 
+            // textBox10
+            // 
+            textBox10.Location = new Point(741, 294);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(150, 31);
+            textBox10.TabIndex = 17;
+            // 
+            // textBox11
+            // 
+            textBox11.Location = new Point(557, 294);
+            textBox11.Name = "textBox11";
+            textBox11.Size = new Size(150, 31);
+            textBox11.TabIndex = 16;
+            // 
+            // textBox12
+            // 
+            textBox12.Location = new Point(376, 294);
+            textBox12.Name = "textBox12";
+            textBox12.Size = new Size(150, 31);
+            textBox12.TabIndex = 15;
+            // 
+            // textBox13
+            // 
+            textBox13.Location = new Point(199, 294);
+            textBox13.Name = "textBox13";
+            textBox13.Size = new Size(150, 31);
+            textBox13.TabIndex = 14;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(741, 200);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(150, 31);
+            textBox6.TabIndex = 13;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(557, 200);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(150, 31);
+            textBox7.TabIndex = 12;
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(376, 200);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(150, 31);
+            textBox8.TabIndex = 11;
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(199, 200);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(150, 31);
+            textBox9.TabIndex = 10;
+            // 
+            // txtNet4
+            // 
+            txtNet4.Location = new Point(741, 113);
+            txtNet4.Name = "txtNet4";
+            txtNet4.Size = new Size(150, 31);
+            txtNet4.TabIndex = 9;
+            txtNet4.TextChanged += txtAdresseNet_TextChanged;
+            // 
+            // txtNet3
+            // 
+            txtNet3.Location = new Point(557, 113);
+            txtNet3.Name = "txtNet3";
+            txtNet3.Size = new Size(150, 31);
+            txtNet3.TabIndex = 8;
+            txtNet3.TextChanged += txtAdresseNet_TextChanged;
+            // 
+            // txtNet2
+            // 
+            txtNet2.Location = new Point(376, 113);
+            txtNet2.Name = "txtNet2";
+            txtNet2.Size = new Size(150, 31);
+            txtNet2.TabIndex = 7;
+            txtNet2.TextChanged += txtAdresseNet_TextChanged;
+            // 
+            // txtNet1
+            // 
+            txtNet1.Location = new Point(199, 113);
+            txtNet1.Name = "txtNet1";
+            txtNet1.Size = new Size(150, 31);
+            txtNet1.TabIndex = 6;
+            txtNet1.TextChanged += txtAdresseNet_TextChanged;
+            // 
+            // txtClasse
+            // 
+            txtClasse.Location = new Point(199, 37);
+            txtClasse.Name = "txtClasse";
+            txtClasse.Size = new Size(120, 31);
+            txtClasse.TabIndex = 5;
+            txtClasse.TextChanged += txtClasse_TextChanged;
+            // 
+            // lblDernIP
+            // 
+            lblDernIP.AutoSize = true;
+            lblDernIP.Location = new Point(42, 377);
+            lblDernIP.Name = "lblDernIP";
+            lblDernIP.Size = new Size(98, 25);
+            lblDernIP.TabIndex = 4;
+            lblDernIP.Text = "Dernière IP";
+            // 
+            // lblPremIP
+            // 
+            lblPremIP.AutoSize = true;
+            lblPremIP.Location = new Point(39, 300);
+            lblPremIP.Name = "lblPremIP";
+            lblPremIP.Size = new Size(101, 25);
+            lblPremIP.TabIndex = 3;
+            lblPremIP.Text = "Première IP";
+            // 
+            // lblBroadcast
+            // 
+            lblBroadcast.AutoSize = true;
+            lblBroadcast.Location = new Point(36, 200);
+            lblBroadcast.Name = "lblBroadcast";
+            lblBroadcast.Size = new Size(138, 25);
+            lblBroadcast.TabIndex = 2;
+            lblBroadcast.Text = "@ de broadcast";
+            // 
+            // lblNet
+            // 
+            lblNet.AutoSize = true;
+            lblNet.Location = new Point(36, 113);
+            lblNet.Name = "lblNet";
+            lblNet.Size = new Size(84, 25);
+            lblNet.TabIndex = 1;
+            lblNet.Text = "@ de net";
+            // 
+            // lblClasse
+            // 
+            lblClasse.AutoSize = true;
+            lblClasse.Location = new Point(35, 40);
+            lblClasse.Name = "lblClasse";
+            lblClasse.Size = new Size(105, 25);
+            lblClasse.TabIndex = 0;
+            lblClasse.Text = "@ de classe";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1127, 1050);
-            Controls.Add(groupBox2);
+            Controls.Add(CalculAutomatique);
             Controls.Add(grpSaisie);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             grpSaisie.ResumeLayout(false);
             grpSaisie.PerformLayout();
+            CalculAutomatique.ResumeLayout(false);
+            CalculAutomatique.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -298,7 +530,7 @@
 
         private TextBox txtDéc1;
         private GroupBox grpSaisie;
-        private GroupBox groupBox2;
+        private GroupBox CalculAutomatique;
         private TextBox txtDéc4;
         private TextBox txtDéc3;
         private TextBox txtDéc2;
@@ -320,5 +552,28 @@
         private TextBox txtMas1;
         private Label label4;
         private Label lblerr;
+        private Label lblBroadcast;
+        private Label lblNet;
+        private Label lblClasse;
+        private TextBox txtNet3;
+        private TextBox txtNet2;
+        private TextBox txtNet1;
+        private TextBox txtClasse;
+        private Label lblDernIP;
+        private Label lblPremIP;
+        private TextBox textBox14;
+        private TextBox textBox15;
+        private TextBox textBox16;
+        private TextBox textBox17;
+        private TextBox textBox10;
+        private TextBox textBox11;
+        private TextBox textBox12;
+        private TextBox textBox13;
+        private TextBox textBox6;
+        private TextBox textBox7;
+        private TextBox textBox8;
+        private TextBox textBox9;
+        private TextBox txtNet4;
+        private Label lblerr2;
     }
 }

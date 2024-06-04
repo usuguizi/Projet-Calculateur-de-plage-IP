@@ -11,17 +11,35 @@ namespace SAE_Réseau
         public Form1()
         {
             InitializeComponent();
-            // Associer les événements TextChanged
+            // Associer les événements TextChanged et KeyPress
             txtCIDR.TextChanged += txtCIDR_TextChanged;
+            txtMas1.KeyPress += txtEnt_entree;
+            txtMas2.KeyPress += txtEnt_entree;
+            txtMas3.KeyPress += txtEnt_entree;
+            txtMas4.KeyPress += txtEnt_entree;
+            txtDéc1.KeyPress += txtEnt_entree;
+            txtDéc2.KeyPress += txtEnt_entree;
+            txtDéc3.KeyPress += txtEnt_entree;
+            txtDéc4.KeyPress += txtEnt_entree;
+            lblerr.Visible = false; // Masquer le label d'erreur par défaut
+
+            // Associer l'événement TextChanged à txtDéc1 pour afficher la classe IP
+            txtDéc1.TextChanged += txtClasse_TextChanged;
+            // Associer les événements TextChanged pour calculer l'adresse réseau
+            txtDéc1.TextChanged += txtAdresseNet_TextChanged;
+            txtDéc2.TextChanged += txtAdresseNet_TextChanged;
+            txtDéc3.TextChanged += txtAdresseNet_TextChanged;
+            txtDéc4.TextChanged += txtAdresseNet_TextChanged;
+            txtMas1.TextChanged += txtAdresseNet_TextChanged;
+            txtMas2.TextChanged += txtAdresseNet_TextChanged;
+            txtMas3.TextChanged += txtAdresseNet_TextChanged;
+            txtMas4.TextChanged += txtAdresseNet_TextChanged;
+
+            // Associer l'événement TextChanged pour le masque
             txtMas1.TextChanged += txtMas_TextChanged;
             txtMas2.TextChanged += txtMas_TextChanged;
             txtMas3.TextChanged += txtMas_TextChanged;
             txtMas4.TextChanged += txtMas_TextChanged;
-            txtDéc1.TextChanged += txtDéc_TextChanged;
-            txtDéc2.TextChanged += txtDéc_TextChanged;
-            txtDéc3.TextChanged += txtDéc_TextChanged;
-            txtDéc4.TextChanged += txtDéc_TextChanged;
-            lblerr.Visible = false; // Masquer le label d'erreur par défaut
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -87,19 +105,28 @@ namespace SAE_Réseau
                 cidrText = cidrText.Substring(1);
             }
 
-            int cidr;
-            if (int.TryParse(cidrText, out cidr) && cidr >= 0 && cidr <= 32)
+            if (!string.IsNullOrEmpty(cidrText))
             {
-                string masque = CIDRVersMasque(cidr);
-                string[] octets = masque.Split('.');
-                txtMas1.Text = octets[0];
-                txtMas2.Text = octets[1];
-                txtMas3.Text = octets[2];
-                txtMas4.Text = octets[3];
+                int cidr;
+                if (int.TryParse(cidrText, out cidr) && cidr >= 0 && cidr <= 32)
+                {
+                    string masque = CIDRVersMasque(cidr);
+                    string[] octets = masque.Split('.');
+                    txtMas1.Text = octets[0];
+                    txtMas2.Text = octets[1];
+                    txtMas3.Text = octets[2];
+                    txtMas4.Text = octets[3];
+                }
+                else
+                {
+                    txtMas1.Text = "";
+                    txtMas2.Text = "";
+                    txtMas3.Text = "";
+                    txtMas4.Text = "";
+                }
             }
             else
             {
-                // Reset the mask fields if the CIDR input is invalid
                 txtMas1.Text = "";
                 txtMas2.Text = "";
                 txtMas3.Text = "";
@@ -124,15 +151,23 @@ namespace SAE_Réseau
                 int.TryParse(txtMas3.Text, out int octet3) && int.TryParse(txtMas4.Text, out int octet4))
             {
                 string masque = $"{octet1}.{octet2}.{octet3}.{octet4}";
-                txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
+                if (IsMasqueValide(masque))
+                {
+                    txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
+                    lblerr2.Visible = false ;
+                }
+                else
+                {
+                    txtCIDR.Text = ""; // Effacer le champ CIDR en cas de masque invalide
+                    lblerr2.Visible = true;
+                    lblerr2.Text = "Masque incorrect";
+
+                }
             }
             else
             {
-                // Reset the CIDR field if the mask input is invalid
-                txtCIDR.Text = "";
+                txtCIDR.Text = ""; // Effacer le champ CIDR en cas de masque invalide
             }
-
-            CheckForErrors();
             isUpdating = false;
         }
 
@@ -191,6 +226,154 @@ namespace SAE_Réseau
         private void lblerreur(object sender, EventArgs e)
         {
             ForeColor = Color.White;
+        }
+
+        private void lblerr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEnt_entree(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Vérifie si la touche pressée est Entrée ou si la longueur du texte est de 3 chiffres
+            if (e.KeyChar == (char)Keys.Enter || (textBox.Text.Length == 3 && char.IsDigit(e.KeyChar)))
+            {
+                e.Handled = true; // Empêche la saisie du caractère
+
+                // Récupère le contrôle suivant dans l'ordre de tabulation
+                Control nextControl = textBox.Parent.GetNextControl(textBox, true);
+
+                if (nextControl != null)
+                {
+                    // Vérifie si le contrôle suivant est une TextBox
+                    if (nextControl is TextBox)
+                    {
+                        TextBox nextTextBox = (TextBox)nextControl;
+
+                        // Sélectionne tout le texte dans la prochaine TextBox pour afficher le curseur
+                        nextTextBox.SelectAll();
+                    }
+
+                    nextControl.Focus(); // Déplace le focus vers le contrôle suivant
+                }
+            }
+            else if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Empêche la saisie de caractères non numériques
+            }
+        }
+
+        private void txtClasse_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtDéc1.Text, out int dec1))
+            {
+                if (dec1 >= 0 && dec1 <= 127)
+                {
+                    txtClasse.Text = "Classe A";
+                }
+                else if (dec1 >= 128 && dec1 <= 191)
+                {
+                    txtClasse.Text = "Classe B";
+                }
+                else if (dec1 >= 192 && dec1 <= 223)
+                {
+                    txtClasse.Text = "Classe C";
+                }
+                else if (dec1 >= 224 && dec1 <= 239)
+                {
+                    txtClasse.Text = "Classe D";
+                }
+                else if (dec1 >= 240 && dec1 <= 255)
+                {
+                    txtClasse.Text = "Classe E";
+                }
+                else
+                {
+                    txtClasse.Text = "Adresse IP non valide";
+                }
+            }
+            else
+            {
+                txtClasse.Text = "Adresse IP non valide";
+            }
+        }
+
+        private void txtAdresseNet_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtDéc1.Text, out int dec1) && int.TryParse(txtDéc2.Text, out int dec2) &&
+                int.TryParse(txtDéc3.Text, out int dec3) && int.TryParse(txtDéc4.Text, out int dec4) &&
+                int.TryParse(txtMas1.Text, out int mas1) && int.TryParse(txtMas2.Text, out int mas2) &&
+                int.TryParse(txtMas3.Text, out int mas3) && int.TryParse(txtMas4.Text, out int mas4))
+            {
+                byte[] adresseIP = { (byte)dec1, (byte)dec2, (byte)dec3, (byte)dec4 };
+                byte[] masque = { (byte)mas1, (byte)mas2, (byte)mas3, (byte)mas4 };
+
+                byte[] adresseNet = AdresseNet(adresseIP, masque);
+
+                txtNet1.Text = adresseNet[0].ToString();
+                txtNet2.Text = adresseNet[1].ToString();
+                txtNet3.Text = adresseNet[2].ToString();
+                txtNet4.Text = adresseNet[3].ToString();
+            }
+            else
+            {
+                txtNet1.Text = "";
+                txtNet2.Text = "";
+                txtNet3.Text = "";
+                txtNet4.Text = "";
+            }
+        }
+
+        public static byte[] AdresseNet(byte[] AdresseIP, byte[] Masque)
+        {
+            byte[] AdresseNet = new byte[4];
+            for (int i = 0; i < 4; i++)
+            {
+                AdresseNet[i] = (byte)(AdresseIP[i] & Masque[i]);
+            }
+            return AdresseNet;
+        }
+
+        private bool IsMasqueValide(string masque)
+        {
+            string[] octets = masque.Split('.');
+            if (octets.Length != 4)
+            {
+                return false;
+            }
+
+            int mask = 0;
+            foreach (string octet in octets)
+            {
+                if (!int.TryParse(octet, out int num) || num < 0 || num > 255)
+                {
+                    return false;
+                }
+                mask = (mask << 8) | num;
+            }
+
+            bool passedZeros = false;
+            for (int i = 31; i >= 0; i--)
+            {
+                bool isOne = (mask & (1 << i)) != 0;
+                if (!isOne)
+                {
+                    passedZeros = true;
+                }
+                else if (passedZeros)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void lblerr2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
