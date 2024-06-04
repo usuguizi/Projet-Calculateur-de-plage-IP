@@ -40,6 +40,25 @@ namespace SAE_Réseau
             txtMas2.TextChanged += txtMas_TextChanged;
             txtMas3.TextChanged += txtMas_TextChanged;
             txtMas4.TextChanged += txtMas_TextChanged;
+
+            txtDéc1.TextChanged += txtBroad_TextChanged;
+            txtDéc2.TextChanged += txtBroad_TextChanged;
+            txtDéc3.TextChanged += txtBroad_TextChanged;
+            txtDéc4.TextChanged += txtBroad_TextChanged;
+            txtMas1.TextChanged += txtBroad_TextChanged;
+            txtMas2.TextChanged += txtBroad_TextChanged;
+            txtMas3.TextChanged += txtBroad_TextChanged;
+            txtMas4.TextChanged += txtBroad_TextChanged;
+
+            txtDéc1.TextChanged += PremiereIp_TextChanged;
+            txtDéc2.TextChanged += PremiereIp_TextChanged;
+            txtDéc3.TextChanged += PremiereIp_TextChanged;
+            txtDéc4.TextChanged += PremiereIp_TextChanged;
+            txtMas1.TextChanged += PremiereIp_TextChanged;
+            txtMas2.TextChanged += PremiereIp_TextChanged;
+            txtMas3.TextChanged += PremiereIp_TextChanged;
+            txtMas4.TextChanged += PremiereIp_TextChanged;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -154,7 +173,7 @@ namespace SAE_Réseau
                 if (IsMasqueValide(masque))
                 {
                     txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
-                    lblerr2.Visible = false ;
+                    lblerr2.Visible = false;
                 }
                 else
                 {
@@ -374,6 +393,86 @@ namespace SAE_Réseau
         private void lblerr2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public static byte[] AdresseBroadcast(byte[] AdresseIP, byte[] Masque)
+        {
+            byte[] AdresseBroadcast = new byte[4];
+            for (int i = 0; i < 4; i++)
+            {
+                AdresseBroadcast[i] = (byte)(AdresseIP[i] | ~Masque[i]);
+            }
+            return AdresseBroadcast;
+        }
+
+        private void txtBroad_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtDéc1.Text, out int dec1) && int.TryParse(txtDéc2.Text, out int dec2) &&
+                int.TryParse(txtDéc3.Text, out int dec3) && int.TryParse(txtDéc4.Text, out int dec4) &&
+                int.TryParse(txtMas1.Text, out int mas1) && int.TryParse(txtMas2.Text, out int mas2) &&
+                int.TryParse(txtMas3.Text, out int mas3) && int.TryParse(txtMas4.Text, out int mas4))
+            {
+                byte[] adresseIP = { (byte)dec1, (byte)dec2, (byte)dec3, (byte)dec4 };
+                byte[] masque = { (byte)mas1, (byte)mas2, (byte)mas3, (byte)mas4 };
+
+                byte[] adresseBroadcast = AdresseBroadcast(adresseIP, masque);
+
+                txtBro1.Text = adresseBroadcast[0].ToString();
+                txtBro2.Text = adresseBroadcast[1].ToString();
+                txtBro3.Text = adresseBroadcast[2].ToString();
+                txtBro4.Text = adresseBroadcast[3].ToString();
+            }
+            else
+            {
+                txtBro1.Text = "";
+                txtBro2.Text = "";
+                txtBro3.Text = "";
+                txtBro4.Text = "";
+            }
+        }
+
+        public void PremiereIp(byte[] AdresseNet)
+        {
+            byte[] PremiereAdresseIp = new byte[4];
+            for (int i = 0; i < 3; i++)
+            {
+                PremiereAdresseIp[i] = AdresseNet[i];
+            }
+            PremiereAdresseIp[4] = (byte)(AdresseNet[4] + 1);
+        }
+
+        private void PremiereIp_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtDéc1.Text, out int dec1) && int.TryParse(txtDéc2.Text, out int dec2) &&
+                int.TryParse(txtDéc3.Text, out int dec3) && int.TryParse(txtDéc4.Text, out int dec4) &&
+                int.TryParse(txtMas1.Text, out int mas1) && int.TryParse(txtMas2.Text, out int mas2) &&
+                int.TryParse(txtMas3.Text, out int mas3) && int.TryParse(txtMas4.Text, out int mas4))
+            {
+                byte[] adresseIP = { (byte)dec1, (byte)dec2, (byte)dec3, (byte)dec4 };
+                byte[] masque = { (byte)mas1, (byte)mas2, (byte)mas3, (byte)mas4 };
+
+                byte[] adresseNet = AdresseNet(adresseIP, masque);
+
+                // Calculate first usable IP address
+                byte[] PremiereAdresseIp = new byte[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    PremiereAdresseIp[i] = adresseNet[i];
+                }
+                PremiereAdresseIp[3] = (byte)(adresseNet[3] + 1); // Fix the array index
+
+                txtPremIP1.Text = PremiereAdresseIp[0].ToString();
+                txtPremIP2.Text = PremiereAdresseIp[1].ToString();
+                txtPremIP3.Text = PremiereAdresseIp[2].ToString();
+                txtPremIP4.Text = PremiereAdresseIp[3].ToString();
+            }
+            else
+            {
+                txtPremIP1.Text = "";
+                txtPremIP2.Text = "";
+                txtPremIP3.Text = "";
+                txtPremIP4.Text = "";
+            }
         }
     }
 }

@@ -57,14 +57,14 @@
             textBox15 = new TextBox();
             textBox16 = new TextBox();
             textBox17 = new TextBox();
-            textBox10 = new TextBox();
-            textBox11 = new TextBox();
-            textBox12 = new TextBox();
-            textBox13 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
-            textBox9 = new TextBox();
+            txtPremIP4 = new TextBox();
+            txtPremIP3 = new TextBox();
+            txtPremIP2 = new TextBox();
+            txtPremIP1 = new TextBox();
+            txtBro4 = new TextBox();
+            txtBro3 = new TextBox();
+            txtBro2 = new TextBox();
+            txtBro1 = new TextBox();
             txtNet4 = new TextBox();
             txtNet3 = new TextBox();
             txtNet2 = new TextBox();
@@ -315,14 +315,14 @@
             CalculAutomatique.Controls.Add(textBox15);
             CalculAutomatique.Controls.Add(textBox16);
             CalculAutomatique.Controls.Add(textBox17);
-            CalculAutomatique.Controls.Add(textBox10);
-            CalculAutomatique.Controls.Add(textBox11);
-            CalculAutomatique.Controls.Add(textBox12);
-            CalculAutomatique.Controls.Add(textBox13);
-            CalculAutomatique.Controls.Add(textBox6);
-            CalculAutomatique.Controls.Add(textBox7);
-            CalculAutomatique.Controls.Add(textBox8);
-            CalculAutomatique.Controls.Add(textBox9);
+            CalculAutomatique.Controls.Add(txtPremIP4);
+            CalculAutomatique.Controls.Add(txtPremIP3);
+            CalculAutomatique.Controls.Add(txtPremIP2);
+            CalculAutomatique.Controls.Add(txtPremIP1);
+            CalculAutomatique.Controls.Add(txtBro4);
+            CalculAutomatique.Controls.Add(txtBro3);
+            CalculAutomatique.Controls.Add(txtBro2);
+            CalculAutomatique.Controls.Add(txtBro1);
             CalculAutomatique.Controls.Add(txtNet4);
             CalculAutomatique.Controls.Add(txtNet3);
             CalculAutomatique.Controls.Add(txtNet2);
@@ -368,61 +368,69 @@
             textBox17.Size = new Size(150, 31);
             textBox17.TabIndex = 18;
             // 
-            // textBox10
+            // txtPremIP4
             // 
-            textBox10.Location = new Point(741, 294);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(150, 31);
-            textBox10.TabIndex = 17;
+            txtPremIP4.Location = new Point(741, 294);
+            txtPremIP4.Name = "txtPremIP4";
+            txtPremIP4.Size = new Size(150, 31);
+            txtPremIP4.TabIndex = 17;
+            txtPremIP4.TextChanged += PremiereIp_TextChanged;
             // 
-            // textBox11
+            // txtPremIP3
             // 
-            textBox11.Location = new Point(557, 294);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(150, 31);
-            textBox11.TabIndex = 16;
+            txtPremIP3.Location = new Point(557, 294);
+            txtPremIP3.Name = "txtPremIP3";
+            txtPremIP3.Size = new Size(150, 31);
+            txtPremIP3.TabIndex = 16;
+            txtPremIP3.TextChanged += PremiereIp_TextChanged;
             // 
-            // textBox12
+            // txtPremIP2
             // 
-            textBox12.Location = new Point(376, 294);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(150, 31);
-            textBox12.TabIndex = 15;
+            txtPremIP2.Location = new Point(376, 294);
+            txtPremIP2.Name = "txtPremIP2";
+            txtPremIP2.Size = new Size(150, 31);
+            txtPremIP2.TabIndex = 15;
+            txtPremIP2.TextChanged += PremiereIp_TextChanged;
             // 
-            // textBox13
+            // txtPremIP1
             // 
-            textBox13.Location = new Point(199, 294);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(150, 31);
-            textBox13.TabIndex = 14;
+            txtPremIP1.Location = new Point(199, 294);
+            txtPremIP1.Name = "txtPremIP1";
+            txtPremIP1.Size = new Size(150, 31);
+            txtPremIP1.TabIndex = 14;
+            txtPremIP1.TextChanged += PremiereIp_TextChanged;
             // 
-            // textBox6
+            // txtBro4
             // 
-            textBox6.Location = new Point(741, 200);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(150, 31);
-            textBox6.TabIndex = 13;
+            txtBro4.Location = new Point(741, 200);
+            txtBro4.Name = "txtBro4";
+            txtBro4.Size = new Size(150, 31);
+            txtBro4.TabIndex = 13;
+            txtBro4.TextChanged += txtBroad_TextChanged;
             // 
-            // textBox7
+            // txtBro3
             // 
-            textBox7.Location = new Point(557, 200);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(150, 31);
-            textBox7.TabIndex = 12;
+            txtBro3.Location = new Point(557, 200);
+            txtBro3.Name = "txtBro3";
+            txtBro3.Size = new Size(150, 31);
+            txtBro3.TabIndex = 12;
+            txtBro3.TextChanged += txtBroad_TextChanged;
             // 
-            // textBox8
+            // txtBro2
             // 
-            textBox8.Location = new Point(376, 200);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(150, 31);
-            textBox8.TabIndex = 11;
+            txtBro2.Location = new Point(376, 200);
+            txtBro2.Name = "txtBro2";
+            txtBro2.Size = new Size(150, 31);
+            txtBro2.TabIndex = 11;
+            txtBro2.TextChanged += txtBroad_TextChanged;
             // 
-            // textBox9
+            // txtBro1
             // 
-            textBox9.Location = new Point(199, 200);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(150, 31);
-            textBox9.TabIndex = 10;
+            txtBro1.Location = new Point(199, 200);
+            txtBro1.Name = "txtBro1";
+            txtBro1.Size = new Size(150, 31);
+            txtBro1.TabIndex = 10;
+            txtBro1.TextChanged += txtBroad_TextChanged;
             // 
             // txtNet4
             // 
@@ -565,14 +573,14 @@
         private TextBox textBox15;
         private TextBox textBox16;
         private TextBox textBox17;
-        private TextBox textBox10;
-        private TextBox textBox11;
-        private TextBox textBox12;
-        private TextBox textBox13;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private TextBox textBox9;
+        private TextBox txtPremIP4;
+        private TextBox txtPremIP3;
+        private TextBox txtPremIP2;
+        private TextBox txtPremIP1;
+        private TextBox txtBro4;
+        private TextBox txtBro3;
+        private TextBox txtBro2;
+        private TextBox txtBro1;
         private TextBox txtNet4;
         private Label lblerr2;
     }
