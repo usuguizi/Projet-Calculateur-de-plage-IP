@@ -67,6 +67,15 @@ namespace SAE_Réseau
             txtMas2.TextChanged += DerniereIp_TextChanged;
             txtMas3.TextChanged += DerniereIp_TextChanged;
             txtMas4.TextChanged += DerniereIp_TextChanged;
+
+            this.txtCIDR.TextChanged += new System.EventHandler(this.txtCIDR_TextChanged);
+            this.txtMas1.TextChanged += new System.EventHandler(this.txtMas_TextChanged);
+            this.txtMas2.TextChanged += new System.EventHandler(this.txtMas_TextChanged);
+            this.txtMas3.TextChanged += new System.EventHandler(this.txtMas_TextChanged);
+            this.txtMas4.TextChanged += new System.EventHandler(this.txtMas_TextChanged);
+            this.txtCIDR.TextChanged += new System.EventHandler(this.txtCIDR_TextChanged);
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -120,13 +129,14 @@ namespace SAE_Réseau
 
         private void txtCIDR_TextChanged(object sender, EventArgs e)
         {
-            if (isUpdating) return; // Éviter les boucles d'événements
+            if (isUpdating) return; // Avoid event loops
             isUpdating = true;
 
             TextBox txtCIDR = (TextBox)sender;
 
             string cidrText = txtCIDR.Text;
 
+            // Remove leading slash if present
             if (cidrText.StartsWith("/"))
             {
                 cidrText = cidrText.Substring(1);
@@ -143,6 +153,7 @@ namespace SAE_Réseau
                     txtMas2.Text = octets[1];
                     txtMas3.Text = octets[2];
                     txtMas4.Text = octets[3];
+                    lblerr2.Visible = false; // Hide error label if CIDR is valid
                 }
                 else
                 {
@@ -150,6 +161,8 @@ namespace SAE_Réseau
                     txtMas2.Text = "";
                     txtMas3.Text = "";
                     txtMas4.Text = "";
+                    lblerr2.Visible = true; // Show error label if CIDR is invalid
+                    lblerr2.Text = "CIDR incorrect";
                 }
             }
             else
@@ -158,12 +171,14 @@ namespace SAE_Réseau
                 txtMas2.Text = "";
                 txtMas3.Text = "";
                 txtMas4.Text = "";
+                lblerr2.Visible = false; // Hide error label if CIDR is empty
             }
 
+            // Ensure CIDR starts with a slash
             if (!txtCIDR.Text.StartsWith("/"))
             {
                 txtCIDR.Text = "/" + txtCIDR.Text;
-                txtCIDR.SelectionStart = txtCIDR.Text.Length; // Positionner le curseur à la fin
+                txtCIDR.SelectionStart = txtCIDR.Text.Length; // Position cursor at the end
             }
 
             isUpdating = false;
@@ -171,34 +186,37 @@ namespace SAE_Réseau
 
         private void txtMas_TextChanged(object sender, EventArgs e)
         {
-            if (isUpdating) return; // Éviter les boucles d'événements
+            if (isUpdating) return; // Avoid event loops
             isUpdating = true;
 
+            // Try to parse the mask input fields
             if (int.TryParse(txtMas1.Text, out int octet1) && int.TryParse(txtMas2.Text, out int octet2) &&
                 int.TryParse(txtMas3.Text, out int octet3) && int.TryParse(txtMas4.Text, out int octet4))
             {
                 string masque = $"{octet1}.{octet2}.{octet3}.{octet4}";
+
                 if (IsMasqueValide(masque))
                 {
                     txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
-                    lblerr2.Visible = false;
+                    lblerr2.Visible = false; // Hide error label if mask is valid
                 }
                 else
                 {
-                    txtCIDR.Text = ""; // Effacer le champ CIDR en cas de masque invalide
-                    lblerr2.Visible = true;
+                    txtCIDR.Text = ""; // Clear the CIDR field if mask is invalid
+                    lblerr2.Visible = true; // Show error label if mask is invalid
                     lblerr2.Text = "Masque incorrect";
-
                 }
             }
             else
             {
-                txtCIDR.Text = ""; // Effacer le champ CIDR en cas de masque invalide
+                txtCIDR.Text = ""; // Clear the CIDR field if mask is invalid
             }
+
             isUpdating = false;
         }
 
-        private void CheckForErrors()
+
+    private void CheckForErrors()
         {
             lblerr.Visible = false; // Masquer le label d'erreur par défaut
 
