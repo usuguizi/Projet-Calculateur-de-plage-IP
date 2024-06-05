@@ -80,6 +80,7 @@
             lblBroadcast = new Label();
             lblNet = new Label();
             lblClasse = new Label();
+            lblmasque = new Label();
             grpSaisie.SuspendLayout();
             CalculAutomatique.SuspendLayout();
             SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // grpSaisie
             // 
+            grpSaisie.Controls.Add(lblmasque);
             grpSaisie.Controls.Add(lblMaskError);
             grpSaisie.Controls.Add(lblerr2);
             grpSaisie.Controls.Add(lblerr);
@@ -129,22 +131,24 @@
             // lblMaskError
             // 
             lblMaskError.AutoSize = true;
+            lblMaskError.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblMaskError.ForeColor = Color.Red;
-            lblMaskError.Location = new Point(370, 449);
+            lblMaskError.Location = new Point(370, 443);
             lblMaskError.Name = "lblMaskError";
-            lblMaskError.Size = new Size(73, 25);
+            lblMaskError.Size = new Size(106, 32);
             lblMaskError.TabIndex = 25;
-            lblMaskError.Text = "erreur 3";
+            lblMaskError.Text = "Erreur 3";
             lblMaskError.Visible = false;
             // 
             // lblerr2
             // 
             lblerr2.AutoEllipsis = true;
             lblerr2.AutoSize = true;
+            lblerr2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblerr2.ForeColor = Color.Red;
-            lblerr2.Location = new Point(126, 428);
+            lblerr2.Location = new Point(109, 443);
             lblerr2.Name = "lblerr2";
-            lblerr2.Size = new Size(68, 25);
+            lblerr2.Size = new Size(99, 32);
             lblerr2.TabIndex = 24;
             lblerr2.Text = "Erreur2";
             lblerr2.Visible = false;
@@ -152,20 +156,23 @@
             // 
             // lblerr
             // 
+            lblerr.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblerr.AutoSize = true;
+            lblerr.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblerr.ForeColor = Color.Red;
             lblerr.Location = new Point(112, 115);
             lblerr.Name = "lblerr";
-            lblerr.Size = new Size(58, 25);
+            lblerr.Size = new Size(85, 32);
             lblerr.TabIndex = 23;
             lblerr.Text = "Erreur";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(73, 351);
             label4.Name = "label4";
-            label4.Size = new Size(52, 25);
+            label4.Size = new Size(82, 28);
             label4.TabIndex = 22;
             label4.Text = "CIDR";
             // 
@@ -303,27 +310,30 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(400, 239);
             label3.Name = "label3";
-            label3.Size = new Size(112, 25);
+            label3.Size = new Size(158, 28);
             label3.TabIndex = 5;
             label3.Text = "Héxadécimal";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(414, 134);
             label2.Name = "label2";
-            label2.Size = new Size(64, 25);
+            label2.Size = new Size(95, 28);
             label2.TabIndex = 4;
             label2.Text = "Binaire";
             // 
             // lblDécimal
             // 
             lblDécimal.AutoSize = true;
+            lblDécimal.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDécimal.Location = new Point(409, 27);
             lblDécimal.Name = "lblDécimal";
-            lblDécimal.Size = new Size(75, 25);
+            lblDécimal.Size = new Size(107, 28);
             lblDécimal.TabIndex = 3;
             lblDécimal.Text = "Décimal";
             // 
@@ -575,11 +585,21 @@
             lblClasse.TabIndex = 0;
             lblClasse.Text = "@ de classe";
             // 
+            // lblmasque
+            // 
+            lblmasque.AutoSize = true;
+            lblmasque.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblmasque.Location = new Point(400, 351);
+            lblmasque.Name = "lblmasque";
+            lblmasque.Size = new Size(98, 28);
+            lblmasque.TabIndex = 26;
+            lblmasque.Text = "Masque";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.PowderBlue;
+            BackColor = Color.DarkBlue;
             ClientSize = new Size(1127, 1050);
             Controls.Add(CalculAutomatique);
             Controls.Add(grpSaisie);
@@ -647,5 +667,6 @@
         private Label lblnbMachines;
         private Label lblnbIP;
         private Label lblMaskError;
+        private Label lblmasque;
     }
 }

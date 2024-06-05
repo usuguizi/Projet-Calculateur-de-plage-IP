@@ -556,8 +556,5 @@ namespace SAE_Réseau
             return true;
         }
 
-
-
-
     }
 }
