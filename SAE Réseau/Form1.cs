@@ -75,23 +75,14 @@ namespace SAE_Réseau
             this.txtMas4.TextChanged += new System.EventHandler(this.txtMas_TextChanged);
             this.txtCIDR.TextChanged += new System.EventHandler(this.txtCIDR_TextChanged);
 
+            txtCIDR.TextChanged += txtnbIP_TextChanged;
+            txtCIDR.TextChanged += txtnbMachines_TextChanged;
+
+
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // Eventuellement d'autres initialisations
-        }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-            // Eventuellement d'autres actions
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            // Eventuellement d'autres actions
-        }
 
         private void txtDéc_TextChanged(object sender, EventArgs e)
         {
@@ -224,18 +215,31 @@ namespace SAE_Réseau
             if (int.TryParse(txtDéc1.Text, out int dec1) && int.TryParse(txtDéc2.Text, out int dec2) &&
                 int.TryParse(txtDéc3.Text, out int dec3) && int.TryParse(txtDéc4.Text, out int dec4))
             {
-                if (dec1 == 0 || dec1 == 127 || (dec1 == 169 && dec2 == 254))
+                // Adresses non utilisables
+                if (dec1 == 0 || (dec1 == 127) ||
+                    (dec1 == 192 && dec2 == 0 && dec3 == 2) || // TEST-NET-1
+                    (dec1 == 198 && dec2 == 51 && dec3 == 100) || // TEST-NET-2
+                    (dec1 == 203 && dec2 == 0 && dec3 == 113)) // TEST-NET-3
                 {
                     lblerr.Text = "Adresse IP non utilisable.";
                     lblerr.Visible = true;
                 }
-                else if (dec1 == 10 || (dec1 == 172 && dec2 >= 16 && dec2 <= 31) || (dec1 == 192 && dec2 == 168))
+                // Adresses non routables
+                else if (dec1 == 10 ||
+                    (dec1 == 172 && dec2 >= 16 && dec2 <= 31) ||
+                    (dec1 == 192 && dec2 == 168) ||
+                    (dec1 == 169 && dec2 == 254) ||
+                    (dec1 == 198 && dec2 == 18) || // Network Interconnect Device Benchmark Testing
+                    (dec1 >= 224 && dec1 <= 239) || // Multicast
+                    (dec1 >= 240 && dec1 <= 255 && dec1 != 255) // Reserved for future use except 255.255.255.255
+                    )
                 {
                     lblerr.Text = "Adresse IP non routable.";
                     lblerr.Visible = true;
                 }
             }
         }
+
 
         private string DecimalVersBinaire(int dec)
         {
@@ -258,25 +262,8 @@ namespace SAE_Réseau
             return masque.Split('.').Select(s => int.Parse(s)).Sum(b => Convert.ToString(b, 2).Count(c => c == '1'));
         }
 
-        private void txtMas(object sender, EventArgs e)
-        {
-            // Eventuellement d'autres actions
-        }
 
-        private void lblerr_Click_1(object sender, EventArgs e)
-        {
-            // Eventuellement d'autres actions
-        }
 
-        private void lblerreur(object sender, EventArgs e)
-        {
-            ForeColor = Color.White;
-        }
-
-        private void lblerr_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtEnt_entree(object sender, KeyPressEventArgs e)
         {
@@ -416,10 +403,7 @@ namespace SAE_Réseau
             return true;
         }
 
-        private void lblerr2_Click(object sender, EventArgs e)
-        {
 
-        }
 
         public static byte[] AdresseBroadcast(byte[] AdresseIP, byte[] Masque)
         {
@@ -524,12 +508,30 @@ namespace SAE_Réseau
 
         private void txtnbIP_TextChanged(object sender, EventArgs e)
         {
-
+            if (int.TryParse(txtCIDR.Text.TrimStart('/'), out int cidr))
+            {
+                int nbIP = (int)Math.Pow(2, 32 - cidr);
+                txtnbIP.Text = nbIP.ToString();
+            }
+            else
+            {
+                txtnbIP.Text = "Invalid CIDR";
+            }
         }
 
         private void txtnbMachines_TextChanged(object sender, EventArgs e)
         {
-
+            if (int.TryParse(txtCIDR.Text.TrimStart('/'), out int cidr))
+            {
+                int nbMachines = (int)Math.Pow(2, 32 - cidr) - 2;
+                txtnbMachines.Text = nbMachines.ToString();
+            }
+            else
+            {
+                txtnbMachines.Text = "Invalid CIDR";
+            }
         }
+
+
     }
 }

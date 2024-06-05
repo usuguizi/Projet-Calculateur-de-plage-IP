@@ -53,6 +53,10 @@
             label2 = new Label();
             lblDécimal = new Label();
             CalculAutomatique = new GroupBox();
+            txtnbMachines = new TextBox();
+            txtnbIP = new TextBox();
+            lblnbMachines = new Label();
+            lblnbIP = new Label();
             txtDerIP14 = new TextBox();
             txtDerIP3 = new TextBox();
             txtDerIP2 = new TextBox();
@@ -75,10 +79,6 @@
             lblBroadcast = new Label();
             lblNet = new Label();
             lblClasse = new Label();
-            lblnbIP = new Label();
-            lblnbMachines = new Label();
-            txtnbIP = new TextBox();
-            txtnbMachines = new TextBox();
             grpSaisie.SuspendLayout();
             CalculAutomatique.SuspendLayout();
             SuspendLayout();
@@ -136,7 +136,6 @@
             lblerr2.Text = "Erreur2";
             lblerr2.Visible = false;
             lblerr2.TextChanged += txtMas_TextChanged;
-            lblerr2.Click += lblerr2_Click;
             // 
             // lblerr
             // 
@@ -147,7 +146,6 @@
             lblerr.Size = new Size(58, 25);
             lblerr.TabIndex = 23;
             lblerr.Text = "Erreur";
-            lblerr.Click += lblerr_Click;
             // 
             // label4
             // 
@@ -351,9 +349,41 @@
             CalculAutomatique.TabStop = false;
             CalculAutomatique.Text = " ";
             // 
+            // txtnbMachines
+            // 
+            txtnbMachines.Location = new Point(750, 337);
+            txtnbMachines.Name = "txtnbMachines";
+            txtnbMachines.Size = new Size(150, 31);
+            txtnbMachines.TabIndex = 25;
+            // 
+            // txtnbIP
+            // 
+            txtnbIP.Location = new Point(199, 337);
+            txtnbIP.Name = "txtnbIP";
+            txtnbIP.Size = new Size(150, 31);
+            txtnbIP.TabIndex = 24;
+            // 
+            // lblnbMachines
+            // 
+            lblnbMachines.AutoSize = true;
+            lblnbMachines.Location = new Point(517, 340);
+            lblnbMachines.Name = "lblnbMachines";
+            lblnbMachines.Size = new Size(190, 25);
+            lblnbMachines.TabIndex = 23;
+            lblnbMachines.Text = "Nombres de machines";
+            // 
+            // lblnbIP
+            // 
+            lblnbIP.AutoSize = true;
+            lblnbIP.Location = new Point(47, 340);
+            lblnbIP.Name = "lblnbIP";
+            lblnbIP.Size = new Size(121, 25);
+            lblnbIP.TabIndex = 22;
+            lblnbIP.Text = "Nombres d'IP";
+            // 
             // txtDerIP14
             // 
-            txtDerIP14.Location = new Point(741, 377);
+            txtDerIP14.Location = new Point(741, 273);
             txtDerIP14.Name = "txtDerIP14";
             txtDerIP14.Size = new Size(150, 31);
             txtDerIP14.TabIndex = 21;
@@ -361,7 +391,7 @@
             // 
             // txtDerIP3
             // 
-            txtDerIP3.Location = new Point(557, 377);
+            txtDerIP3.Location = new Point(557, 273);
             txtDerIP3.Name = "txtDerIP3";
             txtDerIP3.Size = new Size(150, 31);
             txtDerIP3.TabIndex = 20;
@@ -369,7 +399,7 @@
             // 
             // txtDerIP2
             // 
-            txtDerIP2.Location = new Point(376, 377);
+            txtDerIP2.Location = new Point(376, 273);
             txtDerIP2.Name = "txtDerIP2";
             txtDerIP2.Size = new Size(150, 31);
             txtDerIP2.TabIndex = 19;
@@ -377,7 +407,7 @@
             // 
             // txtDerIP1
             // 
-            txtDerIP1.Location = new Point(199, 377);
+            txtDerIP1.Location = new Point(199, 273);
             txtDerIP1.Name = "txtDerIP1";
             txtDerIP1.Size = new Size(150, 31);
             txtDerIP1.TabIndex = 18;
@@ -385,7 +415,7 @@
             // 
             // txtPremIP4
             // 
-            txtPremIP4.Location = new Point(741, 294);
+            txtPremIP4.Location = new Point(741, 214);
             txtPremIP4.Name = "txtPremIP4";
             txtPremIP4.Size = new Size(150, 31);
             txtPremIP4.TabIndex = 17;
@@ -393,7 +423,7 @@
             // 
             // txtPremIP3
             // 
-            txtPremIP3.Location = new Point(557, 294);
+            txtPremIP3.Location = new Point(557, 214);
             txtPremIP3.Name = "txtPremIP3";
             txtPremIP3.Size = new Size(150, 31);
             txtPremIP3.TabIndex = 16;
@@ -401,7 +431,7 @@
             // 
             // txtPremIP2
             // 
-            txtPremIP2.Location = new Point(376, 294);
+            txtPremIP2.Location = new Point(376, 214);
             txtPremIP2.Name = "txtPremIP2";
             txtPremIP2.Size = new Size(150, 31);
             txtPremIP2.TabIndex = 15;
@@ -409,7 +439,7 @@
             // 
             // txtPremIP1
             // 
-            txtPremIP1.Location = new Point(199, 294);
+            txtPremIP1.Location = new Point(199, 214);
             txtPremIP1.Name = "txtPremIP1";
             txtPremIP1.Size = new Size(150, 31);
             txtPremIP1.TabIndex = 14;
@@ -417,7 +447,7 @@
             // 
             // txtBro4
             // 
-            txtBro4.Location = new Point(741, 200);
+            txtBro4.Location = new Point(741, 163);
             txtBro4.Name = "txtBro4";
             txtBro4.Size = new Size(150, 31);
             txtBro4.TabIndex = 13;
@@ -425,7 +455,7 @@
             // 
             // txtBro3
             // 
-            txtBro3.Location = new Point(557, 200);
+            txtBro3.Location = new Point(557, 163);
             txtBro3.Name = "txtBro3";
             txtBro3.Size = new Size(150, 31);
             txtBro3.TabIndex = 12;
@@ -433,7 +463,7 @@
             // 
             // txtBro2
             // 
-            txtBro2.Location = new Point(376, 200);
+            txtBro2.Location = new Point(376, 163);
             txtBro2.Name = "txtBro2";
             txtBro2.Size = new Size(150, 31);
             txtBro2.TabIndex = 11;
@@ -441,7 +471,7 @@
             // 
             // txtBro1
             // 
-            txtBro1.Location = new Point(199, 200);
+            txtBro1.Location = new Point(199, 163);
             txtBro1.Name = "txtBro1";
             txtBro1.Size = new Size(150, 31);
             txtBro1.TabIndex = 10;
@@ -490,7 +520,7 @@
             // lblDernIP
             // 
             lblDernIP.AutoSize = true;
-            lblDernIP.Location = new Point(47, 377);
+            lblDernIP.Location = new Point(47, 273);
             lblDernIP.Name = "lblDernIP";
             lblDernIP.Size = new Size(98, 25);
             lblDernIP.TabIndex = 4;
@@ -499,7 +529,7 @@
             // lblPremIP
             // 
             lblPremIP.AutoSize = true;
-            lblPremIP.Location = new Point(44, 300);
+            lblPremIP.Location = new Point(44, 220);
             lblPremIP.Name = "lblPremIP";
             lblPremIP.Size = new Size(101, 25);
             lblPremIP.TabIndex = 3;
@@ -508,7 +538,7 @@
             // lblBroadcast
             // 
             lblBroadcast.AutoSize = true;
-            lblBroadcast.Location = new Point(36, 200);
+            lblBroadcast.Location = new Point(30, 163);
             lblBroadcast.Name = "lblBroadcast";
             lblBroadcast.Size = new Size(138, 25);
             lblBroadcast.TabIndex = 2;
@@ -531,40 +561,6 @@
             lblClasse.Size = new Size(105, 25);
             lblClasse.TabIndex = 0;
             lblClasse.Text = "@ de classe";
-            // 
-            // lblnbIP
-            // 
-            lblnbIP.AutoSize = true;
-            lblnbIP.Location = new Point(47, 459);
-            lblnbIP.Name = "lblnbIP";
-            lblnbIP.Size = new Size(121, 25);
-            lblnbIP.TabIndex = 22;
-            lblnbIP.Text = "Nombres d'IP";
-            // 
-            // lblnbMachines
-            // 
-            lblnbMachines.AutoSize = true;
-            lblnbMachines.Location = new Point(517, 459);
-            lblnbMachines.Name = "lblnbMachines";
-            lblnbMachines.Size = new Size(190, 25);
-            lblnbMachines.TabIndex = 23;
-            lblnbMachines.Text = "Nombres de machines";
-            // 
-            // txtnbIP
-            // 
-            txtnbIP.Location = new Point(199, 456);
-            txtnbIP.Name = "txtnbIP";
-            txtnbIP.Size = new Size(150, 31);
-            txtnbIP.TabIndex = 24;
-            txtnbIP.TextChanged += txtnbIP_TextChanged;
-            // 
-            // txtnbMachines
-            // 
-            txtnbMachines.Location = new Point(750, 456);
-            txtnbMachines.Name = "txtnbMachines";
-            txtnbMachines.Size = new Size(150, 31);
-            txtnbMachines.TabIndex = 25;
-            txtnbMachines.TextChanged += txtnbMachines_TextChanged;
             // 
             // Form1
             // 
