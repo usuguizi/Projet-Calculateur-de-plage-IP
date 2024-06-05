@@ -216,7 +216,7 @@ namespace SAE_Réseau
         }
 
 
-    private void CheckForErrors()
+        private void CheckForErrors()
         {
             lblerr.Visible = false; // Masquer le label d'erreur par défaut
 
@@ -520,6 +520,16 @@ namespace SAE_Réseau
                 txtDerIP3.Text = "";
                 txtDerIP14.Text = "";
             }
+        }
+
+        private void txtnbIP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtnbMachines_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
