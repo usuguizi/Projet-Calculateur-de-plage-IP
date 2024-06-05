@@ -59,5 +59,15 @@ namespace SAE_Réseau.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sous_droit {
+            get {
+                object obj = ResourceManager.GetObject("sous_droit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -120,40 +120,34 @@ namespace SAE_Réseau
 
         private void txtCIDR_TextChanged(object sender, EventArgs e)
         {
-            if (isUpdating) return; // Avoid event loops
+            if (isUpdating) return; // Eviter les boucles d'événements
             isUpdating = true;
 
             TextBox txtCIDR = (TextBox)sender;
+            string cidrText = txtCIDR.Text.Trim('/');
 
-            string cidrText = txtCIDR.Text;
-
-            // Remove leading slash if present
-            if (cidrText.StartsWith("/"))
+            if (int.TryParse(cidrText, out int cidr) && cidr >= 0 && cidr <= 32)
             {
-                cidrText = cidrText.Substring(1);
-            }
+                string masque = CIDRVersMasque(cidr);
+                string[] octets = masque.Split('.');
+                txtMas1.Text = octets[0];
+                txtMas2.Text = octets[1];
+                txtMas3.Text = octets[2];
+                txtMas4.Text = octets[3];
+                lblerr2.Visible = false; // Masquer le label d'erreur si le CIDR est valide
 
-            if (!string.IsNullOrEmpty(cidrText))
-            {
-                int cidr;
-                if (int.TryParse(cidrText, out cidr) && cidr >= 0 && cidr <= 32)
+                if (int.TryParse(txtDéc1.Text, out int dec1))
                 {
-                    string masque = CIDRVersMasque(cidr);
-                    string[] octets = masque.Split('.');
-                    txtMas1.Text = octets[0];
-                    txtMas2.Text = octets[1];
-                    txtMas3.Text = octets[2];
-                    txtMas4.Text = octets[3];
-                    lblerr2.Visible = false; // Hide error label if CIDR is valid
-                }
-                else
-                {
-                    txtMas1.Text = "";
-                    txtMas2.Text = "";
-                    txtMas3.Text = "";
-                    txtMas4.Text = "";
-                    lblerr2.Visible = true; // Show error label if CIDR is invalid
-                    lblerr2.Text = "CIDR incorrect";
+                    int[] mask = octets.Select(int.Parse).ToArray();
+                    if (!IsMaskValidForClass(mask, dec1))
+                    {
+                        lblMaskError.Text = "Le masque est trop petit pour la classe IP.";
+                        lblMaskError.Visible = true;
+                    }
+                    else
+                    {
+                        lblMaskError.Visible = false;
+                    }
                 }
             }
             else
@@ -162,25 +156,25 @@ namespace SAE_Réseau
                 txtMas2.Text = "";
                 txtMas3.Text = "";
                 txtMas4.Text = "";
-                lblerr2.Visible = false; // Hide error label if CIDR is empty
+                lblerr2.Visible = true; // Afficher le label d'erreur si le CIDR est invalide
+                lblerr2.Text = "CIDR incorrect";
             }
 
-            // Ensure CIDR starts with a slash
             if (!txtCIDR.Text.StartsWith("/"))
             {
                 txtCIDR.Text = "/" + txtCIDR.Text;
-                txtCIDR.SelectionStart = txtCIDR.Text.Length; // Position cursor at the end
+                txtCIDR.SelectionStart = txtCIDR.Text.Length; // Positionner le curseur à la fin
             }
 
             isUpdating = false;
         }
 
+
         private void txtMas_TextChanged(object sender, EventArgs e)
         {
-            if (isUpdating) return; // Avoid event loops
+            if (isUpdating) return; // Eviter les boucles d'événements
             isUpdating = true;
 
-            // Try to parse the mask input fields
             if (int.TryParse(txtMas1.Text, out int octet1) && int.TryParse(txtMas2.Text, out int octet2) &&
                 int.TryParse(txtMas3.Text, out int octet3) && int.TryParse(txtMas4.Text, out int octet4))
             {
@@ -188,23 +182,39 @@ namespace SAE_Réseau
 
                 if (IsMasqueValide(masque))
                 {
-                    txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
-                    lblerr2.Visible = false; // Hide error label if mask is valid
+                    if (int.TryParse(txtDéc1.Text, out int dec1))
+                    {
+                        int[] mask = { octet1, octet2, octet3, octet4 };
+                        if (IsMaskValidForClass(mask, dec1))
+                        {
+                            txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
+                            lblerr2.Visible = false; // Masquer le label d'erreur si le masque est valide
+                            lblMaskError.Visible = false;
+                        }
+                        else
+                        {
+                            lblMaskError.Text = "Le masque est trop petit pour la classe IP.";
+                            lblMaskError.Visible = true;
+                        }
+                    }
                 }
                 else
                 {
-                    txtCIDR.Text = ""; // Clear the CIDR field if mask is invalid
-                    lblerr2.Visible = true; // Show error label if mask is invalid
+                    txtCIDR.Text = "";
+                    lblerr2.Visible = true; // Afficher le label d'erreur si le masque est invalide
                     lblerr2.Text = "Masque incorrect";
                 }
             }
             else
             {
-                txtCIDR.Text = ""; // Clear the CIDR field if mask is invalid
+                txtCIDR.Text = "";
+                lblerr2.Visible = false; // Masquer le label d'erreur si les champs de masque ne sont pas complètement remplis
             }
 
             isUpdating = false;
         }
+
+
 
 
         private void CheckForErrors()
@@ -515,7 +525,7 @@ namespace SAE_Réseau
             }
             else
             {
-                txtnbIP.Text = "Invalid CIDR";
+                txtnbIP.Text = "CIDR invalide";
             }
         }
 
@@ -528,9 +538,25 @@ namespace SAE_Réseau
             }
             else
             {
-                txtnbMachines.Text = "Invalid CIDR";
+                txtnbMachines.Text = "CIDR invalide";
             }
         }
+
+        private bool IsMaskValidForClass(int[] mask, int firstOctet)
+        {
+            int cidr = MasqueVersCIDR(string.Join(".", mask.Select(o => o.ToString())));
+
+            if ((firstOctet >= 0 && firstOctet <= 127 && cidr < 8) ||  // Classe A
+                (firstOctet >= 128 && firstOctet <= 191 && cidr < 16) || // Classe B
+                (firstOctet >= 192 && firstOctet <= 223 && cidr < 24))   // Classe C
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
 
 
     }

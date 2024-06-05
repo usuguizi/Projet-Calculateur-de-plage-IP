@@ -30,6 +30,7 @@
         {
             txtDéc1 = new TextBox();
             grpSaisie = new GroupBox();
+            lblMaskError = new Label();
             lblerr2 = new Label();
             lblerr = new Label();
             label4 = new Label();
@@ -95,6 +96,7 @@
             // 
             // grpSaisie
             // 
+            grpSaisie.Controls.Add(lblMaskError);
             grpSaisie.Controls.Add(lblerr2);
             grpSaisie.Controls.Add(lblerr);
             grpSaisie.Controls.Add(label4);
@@ -123,6 +125,17 @@
             grpSaisie.Size = new Size(906, 515);
             grpSaisie.TabIndex = 1;
             grpSaisie.TabStop = false;
+            // 
+            // lblMaskError
+            // 
+            lblMaskError.AutoSize = true;
+            lblMaskError.ForeColor = Color.Red;
+            lblMaskError.Location = new Point(370, 449);
+            lblMaskError.Name = "lblMaskError";
+            lblMaskError.Size = new Size(73, 25);
+            lblMaskError.TabIndex = 25;
+            lblMaskError.Text = "erreur 3";
+            lblMaskError.Visible = false;
             // 
             // lblerr2
             // 
@@ -633,5 +646,6 @@
         private TextBox txtnbIP;
         private Label lblnbMachines;
         private Label lblnbIP;
+        private Label lblMaskError;
     }
 }
