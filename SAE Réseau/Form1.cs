@@ -118,6 +118,7 @@ namespace SAE_Réseau
 
             CheckForErrors();
         }
+
         private void txtCIDR_TextChanged(object sender, EventArgs e)
         {
             if (isUpdating) return; // Eviter les boucles d'événements
@@ -158,7 +159,6 @@ namespace SAE_Réseau
                 txtMas4.Text = "";
                 lblerr2.Visible = true; // Afficher le label d'erreur si le CIDR est invalide
                 lblerr2.Text = "CIDR incorrect";
-                lblMaskError.Visible = false; // Masquer le label d'erreur si le CIDR est invalide
             }
 
             if (!txtCIDR.Text.StartsWith("/"))
@@ -169,7 +169,6 @@ namespace SAE_Réseau
 
             isUpdating = false;
         }
-
 
 
         private void txtMas_TextChanged(object sender, EventArgs e)
@@ -184,12 +183,16 @@ namespace SAE_Réseau
 
                 if (IsMasqueValide(masque))
                 {
+                    // Convert the mask to CIDR notation
+                    int cidr = MasqueVersCIDR(masque);
+                    txtCIDR.Text = $"/{cidr}";
+
+                    // Validate the mask against the IP class
                     if (int.TryParse(txtDéc1.Text, out int dec1))
                     {
                         int[] mask = { octet1, octet2, octet3, octet4 };
                         if (IsMaskValidForClass(mask, dec1))
                         {
-                            txtCIDR.Text = $"/{MasqueVersCIDR(masque)}";
                             lblerr2.Visible = false; // Masquer le label d'erreur si le masque est valide
                             lblMaskError.Visible = false;
                         }
@@ -199,24 +202,29 @@ namespace SAE_Réseau
                             lblMaskError.Visible = true;
                         }
                     }
+                    else
+                    {
+                        lblMaskError.Visible = false;
+                    }
                 }
                 else
                 {
                     txtCIDR.Text = "";
                     lblerr2.Visible = true; // Afficher le label d'erreur si le masque est invalide
                     lblerr2.Text = "Masque incorrect";
-                    lblMaskError.Visible = false; // Masquer le label d'erreur si le masque est invalide
+                    lblMaskError.Visible = false;
                 }
             }
             else
             {
                 txtCIDR.Text = "";
                 lblerr2.Visible = false; // Masquer le label d'erreur si les champs de masque ne sont pas complètement remplis
-                lblMaskError.Visible = false; // Masquer le label d'erreur si le masque est invalide
+                lblMaskError.Visible = false;
             }
 
             isUpdating = false;
         }
+
 
 
 
