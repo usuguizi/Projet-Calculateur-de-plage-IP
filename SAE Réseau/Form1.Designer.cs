@@ -30,6 +30,7 @@
         {
             txtDéc1 = new TextBox();
             grpSaisie = new GroupBox();
+            lblmasque = new Label();
             lblMaskError = new Label();
             lblerr2 = new Label();
             lblerr = new Label();
@@ -80,7 +81,6 @@
             lblBroadcast = new Label();
             lblNet = new Label();
             lblClasse = new Label();
-            lblmasque = new Label();
             grpSaisie.SuspendLayout();
             CalculAutomatique.SuspendLayout();
             SuspendLayout();
@@ -127,6 +127,16 @@
             grpSaisie.Size = new Size(906, 515);
             grpSaisie.TabIndex = 1;
             grpSaisie.TabStop = false;
+            // 
+            // lblmasque
+            // 
+            lblmasque.AutoSize = true;
+            lblmasque.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblmasque.Location = new Point(400, 351);
+            lblmasque.Name = "lblmasque";
+            lblmasque.Size = new Size(98, 28);
+            lblmasque.TabIndex = 26;
+            lblmasque.Text = "Masque";
             // 
             // lblMaskError
             // 
@@ -585,21 +595,11 @@
             lblClasse.TabIndex = 0;
             lblClasse.Text = "@ de classe";
             // 
-            // lblmasque
-            // 
-            lblmasque.AutoSize = true;
-            lblmasque.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblmasque.Location = new Point(400, 351);
-            lblmasque.Name = "lblmasque";
-            lblmasque.Size = new Size(98, 28);
-            lblmasque.TabIndex = 26;
-            lblmasque.Text = "Masque";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkBlue;
+            BackColor = Color.LavenderBlush;
             ClientSize = new Size(1127, 1050);
             Controls.Add(CalculAutomatique);
             Controls.Add(grpSaisie);

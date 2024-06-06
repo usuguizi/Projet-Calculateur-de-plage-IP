@@ -11,6 +11,7 @@ namespace SAE_Réseau
         public Form1()
         {
             InitializeComponent();
+
             // Associer les événements TextChanged et KeyPress
             txtCIDR.TextChanged += txtCIDR_TextChanged;
             txtMas1.KeyPress += txtEnt_entree;
@@ -117,7 +118,6 @@ namespace SAE_Réseau
 
             CheckForErrors();
         }
-
         private void txtCIDR_TextChanged(object sender, EventArgs e)
         {
             if (isUpdating) return; // Eviter les boucles d'événements
@@ -158,6 +158,7 @@ namespace SAE_Réseau
                 txtMas4.Text = "";
                 lblerr2.Visible = true; // Afficher le label d'erreur si le CIDR est invalide
                 lblerr2.Text = "CIDR incorrect";
+                lblMaskError.Visible = false; // Masquer le label d'erreur si le CIDR est invalide
             }
 
             if (!txtCIDR.Text.StartsWith("/"))
@@ -168,6 +169,7 @@ namespace SAE_Réseau
 
             isUpdating = false;
         }
+
 
 
         private void txtMas_TextChanged(object sender, EventArgs e)
@@ -203,16 +205,19 @@ namespace SAE_Réseau
                     txtCIDR.Text = "";
                     lblerr2.Visible = true; // Afficher le label d'erreur si le masque est invalide
                     lblerr2.Text = "Masque incorrect";
+                    lblMaskError.Visible = false; // Masquer le label d'erreur si le masque est invalide
                 }
             }
             else
             {
                 txtCIDR.Text = "";
                 lblerr2.Visible = false; // Masquer le label d'erreur si les champs de masque ne sont pas complètement remplis
+                lblMaskError.Visible = false; // Masquer le label d'erreur si le masque est invalide
             }
 
             isUpdating = false;
         }
+
 
 
 
