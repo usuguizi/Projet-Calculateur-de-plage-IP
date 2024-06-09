@@ -90,10 +90,10 @@ namespace SAE_Réseau
             TextBox bouton = (TextBox)sender;
 
             // Récupérer la TextBox binaire associée
-            TextBox bin = (TextBox)grpSaisie.Controls[bouton.Tag.ToString()];
+            TextBox bin = (TextBox)CalculAutomatique.Controls[bouton.Tag.ToString()];
 
             // Récupérer la TextBox hexadécimale associée à partir du tag de la TextBox binaire
-            TextBox hex = (TextBox)grpSaisie.Controls[bin.Tag.ToString()];
+            TextBox hex = (TextBox)CalculAutomatique.Controls[bin.Tag.ToString()];
 
             int nb;
             Int32.TryParse(bouton.Text, out nb);
@@ -118,6 +118,7 @@ namespace SAE_Réseau
 
             CheckForErrors();
         }
+
 
         private void txtCIDR_TextChanged(object sender, EventArgs e)
         {
@@ -568,6 +569,5 @@ namespace SAE_Réseau
 
             return true;
         }
-
     }
 }
