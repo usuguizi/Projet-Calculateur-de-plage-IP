@@ -570,9 +570,15 @@ namespace SAE_Réseau
             return true;
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void BoutonAide_Click(object sender, EventArgs e)
         {
+            string notice = "Notice d'aide:\n\n" +
+                            "1. Entrez l'adresse IP et le masque de sous-réseau.\n" +
+                            "2. Le CIDR et les autres informations seront automatiquement calculés.\n" +
+                            "3. Vérifiez les adresses IP utilisables, l'adresse de réseau, l'adresse de broadcast, etc.\n" +
+                            "4. Assurez-vous que le masque est approprié pour la classe de l'adresse IP.";
 
+            MessageBox.Show(notice, "Besoin d'aide", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

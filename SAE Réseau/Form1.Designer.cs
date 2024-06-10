@@ -84,6 +84,7 @@
             lblClasse = new Label();
             label1 = new Label();
             label5 = new Label();
+            BoutonAide = new Button();
             grpSaisie.SuspendLayout();
             CalculAutomatique.SuspendLayout();
             SuspendLayout();
@@ -102,6 +103,7 @@
             // grpSaisie
             // 
             grpSaisie.BackColor = Color.White;
+            grpSaisie.BackgroundImageLayout = ImageLayout.None;
             grpSaisie.Controls.Add(lblmasque);
             grpSaisie.Controls.Add(lblMaskError);
             grpSaisie.Controls.Add(lblerr2);
@@ -117,11 +119,11 @@
             grpSaisie.Controls.Add(txtDéc2);
             grpSaisie.Controls.Add(lblDécimal);
             grpSaisie.Controls.Add(txtDéc1);
-            grpSaisie.Location = new Point(97, 35);
+            grpSaisie.Location = new Point(97, 47);
             grpSaisie.Margin = new Padding(2);
             grpSaisie.Name = "grpSaisie";
             grpSaisie.Padding = new Padding(2);
-            grpSaisie.Size = new Size(725, 258);
+            grpSaisie.Size = new Size(725, 244);
             grpSaisie.TabIndex = 1;
             grpSaisie.TabStop = false;
             // 
@@ -129,8 +131,8 @@
             // 
             lblmasque.AutoSize = true;
             lblmasque.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblmasque.ForeColor = Color.FromArgb(234, 80, 149);
-            lblmasque.Location = new Point(325, 132);
+            lblmasque.ForeColor = Color.FromArgb(103, 32, 170);
+            lblmasque.Location = new Point(327, 134);
             lblmasque.Margin = new Padding(2, 0, 2, 0);
             lblmasque.Name = "lblmasque";
             lblmasque.Size = new Size(83, 24);
@@ -142,7 +144,7 @@
             lblMaskError.AutoSize = true;
             lblMaskError.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblMaskError.ForeColor = Color.Red;
-            lblMaskError.Location = new Point(301, 205);
+            lblMaskError.Location = new Point(303, 207);
             lblMaskError.Margin = new Padding(2, 0, 2, 0);
             lblMaskError.Name = "lblMaskError";
             lblMaskError.Size = new Size(88, 28);
@@ -156,7 +158,7 @@
             lblerr2.AutoSize = true;
             lblerr2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblerr2.ForeColor = Color.Red;
-            lblerr2.Location = new Point(92, 205);
+            lblerr2.Location = new Point(94, 207);
             lblerr2.Margin = new Padding(2, 0, 2, 0);
             lblerr2.Name = "lblerr2";
             lblerr2.Size = new Size(82, 28);
@@ -171,7 +173,7 @@
             lblerr.AutoSize = true;
             lblerr.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblerr.ForeColor = Color.Red;
-            lblerr.Location = new Point(92, 95);
+            lblerr.Location = new Point(92, 83);
             lblerr.Margin = new Padding(2, 0, 2, 0);
             lblerr.Name = "lblerr";
             lblerr.Size = new Size(70, 28);
@@ -182,8 +184,8 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.FromArgb(234, 80, 149);
-            label4.Location = new Point(90, 132);
+            label4.ForeColor = Color.FromArgb(103, 32, 170);
+            label4.Location = new Point(92, 134);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(69, 24);
@@ -265,8 +267,8 @@
             // 
             lblDécimal.AutoSize = true;
             lblDécimal.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDécimal.ForeColor = Color.FromArgb(234, 80, 149);
-            lblDécimal.Location = new Point(327, 22);
+            lblDécimal.ForeColor = Color.FromArgb(103, 32, 170);
+            lblDécimal.Location = new Point(329, 24);
             lblDécimal.Margin = new Padding(2, 0, 2, 0);
             lblDécimal.Name = "lblDécimal";
             lblDécimal.Size = new Size(89, 24);
@@ -275,6 +277,7 @@
             // 
             // CalculAutomatique
             // 
+            CalculAutomatique.Anchor = AnchorStyles.None;
             CalculAutomatique.BackColor = Color.White;
             CalculAutomatique.Controls.Add(txtHéx4);
             CalculAutomatique.Controls.Add(txtHéx3);
@@ -312,87 +315,95 @@
             CalculAutomatique.Controls.Add(lblBroadcast);
             CalculAutomatique.Controls.Add(lblNet);
             CalculAutomatique.Controls.Add(lblClasse);
-            CalculAutomatique.Location = new Point(97, 307);
+            CalculAutomatique.Location = new Point(97, 309);
             CalculAutomatique.Margin = new Padding(2);
             CalculAutomatique.Name = "CalculAutomatique";
             CalculAutomatique.Padding = new Padding(2);
-            CalculAutomatique.Size = new Size(725, 523);
+            CalculAutomatique.Size = new Size(725, 511);
             CalculAutomatique.TabIndex = 2;
             CalculAutomatique.TabStop = false;
             CalculAutomatique.Text = " ";
             // 
             // txtHéx4
             // 
+            txtHéx4.Cursor = Cursors.No;
+            txtHéx4.Enabled = false;
             txtHéx4.Location = new Point(504, 154);
             txtHéx4.Margin = new Padding(2);
             txtHéx4.Name = "txtHéx4";
-            txtHéx4.ReadOnly = true;
             txtHéx4.Size = new Size(121, 27);
             txtHéx4.TabIndex = 35;
             // 
             // txtHéx3
             // 
+            txtHéx3.Cursor = Cursors.No;
+            txtHéx3.Enabled = false;
             txtHéx3.Location = new Point(362, 154);
             txtHéx3.Margin = new Padding(2);
             txtHéx3.Name = "txtHéx3";
-            txtHéx3.ReadOnly = true;
             txtHéx3.Size = new Size(121, 27);
             txtHéx3.TabIndex = 34;
             // 
             // txtHéx2
             // 
+            txtHéx2.Cursor = Cursors.No;
+            txtHéx2.Enabled = false;
             txtHéx2.Location = new Point(222, 154);
             txtHéx2.Margin = new Padding(2);
             txtHéx2.Name = "txtHéx2";
-            txtHéx2.ReadOnly = true;
             txtHéx2.Size = new Size(121, 27);
             txtHéx2.TabIndex = 33;
             // 
             // txtHéx1
             // 
+            txtHéx1.Cursor = Cursors.No;
+            txtHéx1.Enabled = false;
             txtHéx1.Location = new Point(78, 154);
             txtHéx1.Margin = new Padding(2);
             txtHéx1.Name = "txtHéx1";
-            txtHéx1.ReadOnly = true;
             txtHéx1.Size = new Size(121, 27);
             txtHéx1.TabIndex = 32;
             // 
             // txtBin4
             // 
+            txtBin4.Cursor = Cursors.No;
+            txtBin4.Enabled = false;
             txtBin4.Location = new Point(504, 64);
             txtBin4.Margin = new Padding(2);
             txtBin4.Name = "txtBin4";
-            txtBin4.ReadOnly = true;
             txtBin4.Size = new Size(121, 27);
             txtBin4.TabIndex = 31;
             txtBin4.Tag = "txtHéx4";
             // 
             // txtBin3
             // 
+            txtBin3.Cursor = Cursors.No;
+            txtBin3.Enabled = false;
             txtBin3.Location = new Point(362, 64);
             txtBin3.Margin = new Padding(2);
             txtBin3.Name = "txtBin3";
-            txtBin3.ReadOnly = true;
             txtBin3.Size = new Size(121, 27);
             txtBin3.TabIndex = 30;
             txtBin3.Tag = "txtHéx3";
             // 
             // txtBin2
             // 
+            txtBin2.Cursor = Cursors.No;
+            txtBin2.Enabled = false;
             txtBin2.Location = new Point(222, 64);
             txtBin2.Margin = new Padding(2);
             txtBin2.Name = "txtBin2";
-            txtBin2.ReadOnly = true;
             txtBin2.Size = new Size(121, 27);
             txtBin2.TabIndex = 29;
             txtBin2.Tag = "txtHéx2";
             // 
             // txtBin1
             // 
+            txtBin1.Cursor = Cursors.No;
+            txtBin1.Enabled = false;
             txtBin1.Location = new Point(78, 64);
             txtBin1.Margin = new Padding(2);
             txtBin1.Name = "txtBin1";
-            txtBin1.ReadOnly = true;
             txtBin1.Size = new Size(121, 27);
             txtBin1.TabIndex = 28;
             txtBin1.Tag = "txtHéx1";
@@ -402,7 +413,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(103, 32, 170);
-            label3.Location = new Point(301, 108);
+            label3.Location = new Point(303, 110);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(132, 24);
@@ -414,7 +425,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(103, 32, 170);
-            label2.Location = new Point(319, 22);
+            label2.Location = new Point(321, 24);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(78, 24);
@@ -423,19 +434,21 @@
             // 
             // txtnbMachines
             // 
+            txtnbMachines.Cursor = Cursors.No;
+            txtnbMachines.Enabled = false;
             txtnbMachines.Location = new Point(594, 465);
             txtnbMachines.Margin = new Padding(2);
             txtnbMachines.Name = "txtnbMachines";
-            txtnbMachines.ReadOnly = true;
             txtnbMachines.Size = new Size(121, 27);
             txtnbMachines.TabIndex = 25;
             // 
             // txtnbIP
             // 
+            txtnbIP.Cursor = Cursors.No;
+            txtnbIP.Enabled = false;
             txtnbIP.Location = new Point(153, 465);
             txtnbIP.Margin = new Padding(2);
             txtnbIP.Name = "txtnbIP";
-            txtnbIP.ReadOnly = true;
             txtnbIP.Size = new Size(121, 27);
             txtnbIP.TabIndex = 24;
             // 
@@ -444,7 +457,7 @@
             lblnbMachines.AutoSize = true;
             lblnbMachines.Font = new Font("Imprint MT Shadow", 9F, FontStyle.Bold);
             lblnbMachines.ForeColor = Color.FromArgb(103, 32, 170);
-            lblnbMachines.Location = new Point(417, 470);
+            lblnbMachines.Location = new Point(419, 472);
             lblnbMachines.Margin = new Padding(2, 0, 2, 0);
             lblnbMachines.Name = "lblnbMachines";
             lblnbMachines.Size = new Size(165, 18);
@@ -456,7 +469,7 @@
             lblnbIP.AutoSize = true;
             lblnbIP.Font = new Font("Imprint MT Shadow", 9F, FontStyle.Bold);
             lblnbIP.ForeColor = Color.FromArgb(103, 32, 170);
-            lblnbIP.Location = new Point(32, 470);
+            lblnbIP.Location = new Point(34, 472);
             lblnbIP.Margin = new Padding(2, 0, 2, 0);
             lblnbIP.Name = "lblnbIP";
             lblnbIP.Size = new Size(105, 18);
@@ -465,171 +478,188 @@
             // 
             // txtDerIP14
             // 
+            txtDerIP14.Cursor = Cursors.No;
+            txtDerIP14.Enabled = false;
             txtDerIP14.Location = new Point(587, 413);
             txtDerIP14.Margin = new Padding(2);
             txtDerIP14.Name = "txtDerIP14";
-            txtDerIP14.ReadOnly = true;
             txtDerIP14.Size = new Size(121, 27);
             txtDerIP14.TabIndex = 21;
             txtDerIP14.TextChanged += DerniereIp_TextChanged;
             // 
             // txtDerIP3
             // 
+            txtDerIP3.Cursor = Cursors.No;
+            txtDerIP3.Enabled = false;
             txtDerIP3.Location = new Point(440, 413);
             txtDerIP3.Margin = new Padding(2);
             txtDerIP3.Name = "txtDerIP3";
-            txtDerIP3.ReadOnly = true;
             txtDerIP3.Size = new Size(121, 27);
             txtDerIP3.TabIndex = 20;
             txtDerIP3.TextChanged += DerniereIp_TextChanged;
             // 
             // txtDerIP2
             // 
+            txtDerIP2.Cursor = Cursors.No;
+            txtDerIP2.Enabled = false;
             txtDerIP2.Location = new Point(295, 413);
             txtDerIP2.Margin = new Padding(2);
             txtDerIP2.Name = "txtDerIP2";
-            txtDerIP2.ReadOnly = true;
             txtDerIP2.Size = new Size(121, 27);
             txtDerIP2.TabIndex = 19;
             txtDerIP2.TextChanged += DerniereIp_TextChanged;
             // 
             // txtDerIP1
             // 
+            txtDerIP1.Cursor = Cursors.No;
+            txtDerIP1.Enabled = false;
             txtDerIP1.Location = new Point(153, 413);
             txtDerIP1.Margin = new Padding(2);
             txtDerIP1.Name = "txtDerIP1";
-            txtDerIP1.ReadOnly = true;
             txtDerIP1.Size = new Size(121, 27);
             txtDerIP1.TabIndex = 18;
             txtDerIP1.TextChanged += DerniereIp_TextChanged;
             // 
             // txtPremIP4
             // 
+            txtPremIP4.Cursor = Cursors.No;
+            txtPremIP4.Enabled = false;
             txtPremIP4.Location = new Point(587, 366);
             txtPremIP4.Margin = new Padding(2);
             txtPremIP4.Name = "txtPremIP4";
-            txtPremIP4.ReadOnly = true;
             txtPremIP4.Size = new Size(121, 27);
             txtPremIP4.TabIndex = 17;
             txtPremIP4.TextChanged += PremiereIp_TextChanged;
             // 
             // txtPremIP3
             // 
+            txtPremIP3.Cursor = Cursors.No;
+            txtPremIP3.Enabled = false;
             txtPremIP3.Location = new Point(440, 366);
             txtPremIP3.Margin = new Padding(2);
             txtPremIP3.Name = "txtPremIP3";
-            txtPremIP3.ReadOnly = true;
             txtPremIP3.Size = new Size(121, 27);
             txtPremIP3.TabIndex = 16;
             txtPremIP3.TextChanged += PremiereIp_TextChanged;
             // 
             // txtPremIP2
             // 
+            txtPremIP2.Cursor = Cursors.No;
+            txtPremIP2.Enabled = false;
             txtPremIP2.Location = new Point(295, 366);
             txtPremIP2.Margin = new Padding(2);
             txtPremIP2.Name = "txtPremIP2";
-            txtPremIP2.ReadOnly = true;
             txtPremIP2.Size = new Size(121, 27);
             txtPremIP2.TabIndex = 15;
             txtPremIP2.TextChanged += PremiereIp_TextChanged;
             // 
             // txtPremIP1
             // 
+            txtPremIP1.Cursor = Cursors.No;
+            txtPremIP1.Enabled = false;
             txtPremIP1.Location = new Point(153, 366);
             txtPremIP1.Margin = new Padding(2);
             txtPremIP1.Name = "txtPremIP1";
-            txtPremIP1.ReadOnly = true;
             txtPremIP1.Size = new Size(121, 27);
             txtPremIP1.TabIndex = 14;
             txtPremIP1.TextChanged += PremiereIp_TextChanged;
             // 
             // txtBro4
             // 
+            txtBro4.Cursor = Cursors.No;
+            txtBro4.Enabled = false;
             txtBro4.Location = new Point(587, 325);
             txtBro4.Margin = new Padding(2);
             txtBro4.Name = "txtBro4";
-            txtBro4.ReadOnly = true;
             txtBro4.Size = new Size(121, 27);
             txtBro4.TabIndex = 13;
             txtBro4.TextChanged += txtBroad_TextChanged;
             // 
             // txtBro3
             // 
+            txtBro3.Cursor = Cursors.No;
+            txtBro3.Enabled = false;
             txtBro3.Location = new Point(440, 325);
             txtBro3.Margin = new Padding(2);
             txtBro3.Name = "txtBro3";
-            txtBro3.ReadOnly = true;
             txtBro3.Size = new Size(121, 27);
             txtBro3.TabIndex = 12;
             txtBro3.TextChanged += txtBroad_TextChanged;
             // 
             // txtBro2
             // 
+            txtBro2.Cursor = Cursors.No;
+            txtBro2.Enabled = false;
             txtBro2.Location = new Point(295, 325);
             txtBro2.Margin = new Padding(2);
             txtBro2.Name = "txtBro2";
-            txtBro2.ReadOnly = true;
             txtBro2.Size = new Size(121, 27);
             txtBro2.TabIndex = 11;
             txtBro2.TextChanged += txtBroad_TextChanged;
             // 
             // txtBro1
             // 
+            txtBro1.Cursor = Cursors.No;
+            txtBro1.Enabled = false;
             txtBro1.Location = new Point(153, 325);
             txtBro1.Margin = new Padding(2);
             txtBro1.Name = "txtBro1";
-            txtBro1.ReadOnly = true;
             txtBro1.Size = new Size(121, 27);
             txtBro1.TabIndex = 10;
             txtBro1.TextChanged += txtBroad_TextChanged;
             // 
             // txtNet4
             // 
+            txtNet4.Cursor = Cursors.No;
+            txtNet4.Enabled = false;
             txtNet4.Location = new Point(587, 285);
             txtNet4.Margin = new Padding(2);
             txtNet4.Name = "txtNet4";
-            txtNet4.ReadOnly = true;
             txtNet4.Size = new Size(121, 27);
             txtNet4.TabIndex = 9;
             txtNet4.TextChanged += txtAdresseNet_TextChanged;
             // 
             // txtNet3
             // 
+            txtNet3.Cursor = Cursors.No;
+            txtNet3.Enabled = false;
             txtNet3.Location = new Point(440, 285);
             txtNet3.Margin = new Padding(2);
             txtNet3.Name = "txtNet3";
-            txtNet3.ReadOnly = true;
             txtNet3.Size = new Size(121, 27);
             txtNet3.TabIndex = 8;
             txtNet3.TextChanged += txtAdresseNet_TextChanged;
             // 
             // txtNet2
             // 
+            txtNet2.Cursor = Cursors.No;
+            txtNet2.Enabled = false;
             txtNet2.ForeColor = SystemColors.ControlText;
             txtNet2.Location = new Point(295, 285);
             txtNet2.Margin = new Padding(2);
             txtNet2.Name = "txtNet2";
-            txtNet2.ReadOnly = true;
             txtNet2.Size = new Size(121, 27);
             txtNet2.TabIndex = 7;
             txtNet2.TextChanged += txtAdresseNet_TextChanged;
             // 
             // txtNet1
             // 
+            txtNet1.Cursor = Cursors.No;
+            txtNet1.Enabled = false;
             txtNet1.Location = new Point(153, 285);
             txtNet1.Margin = new Padding(2);
             txtNet1.Name = "txtNet1";
-            txtNet1.ReadOnly = true;
             txtNet1.Size = new Size(121, 27);
             txtNet1.TabIndex = 6;
             txtNet1.TextChanged += txtAdresseNet_TextChanged;
             // 
             // txtClasse
             // 
+            txtClasse.Cursor = Cursors.No;
+            txtClasse.Enabled = false;
             txtClasse.Location = new Point(153, 225);
             txtClasse.Margin = new Padding(2);
             txtClasse.Name = "txtClasse";
-            txtClasse.ReadOnly = true;
             txtClasse.Size = new Size(97, 27);
             txtClasse.TabIndex = 5;
             txtClasse.TextChanged += txtClasse_TextChanged;
@@ -639,7 +669,7 @@
             lblDernIP.AutoSize = true;
             lblDernIP.Font = new Font("Imprint MT Shadow", 9F, FontStyle.Bold);
             lblDernIP.ForeColor = Color.FromArgb(103, 32, 170);
-            lblDernIP.Location = new Point(46, 418);
+            lblDernIP.Location = new Point(48, 420);
             lblDernIP.Margin = new Padding(2, 0, 2, 0);
             lblDernIP.Name = "lblDernIP";
             lblDernIP.Size = new Size(98, 18);
@@ -651,7 +681,7 @@
             lblPremIP.AutoSize = true;
             lblPremIP.Font = new Font("Imprint MT Shadow", 9F, FontStyle.Bold);
             lblPremIP.ForeColor = Color.FromArgb(103, 32, 170);
-            lblPremIP.Location = new Point(45, 371);
+            lblPremIP.Location = new Point(47, 373);
             lblPremIP.Margin = new Padding(2, 0, 2, 0);
             lblPremIP.Name = "lblPremIP";
             lblPremIP.Size = new Size(99, 18);
@@ -663,7 +693,7 @@
             lblBroadcast.AutoSize = true;
             lblBroadcast.Font = new Font("Imprint MT Shadow", 9F, FontStyle.Bold);
             lblBroadcast.ForeColor = Color.FromArgb(103, 32, 170);
-            lblBroadcast.Location = new Point(25, 330);
+            lblBroadcast.Location = new Point(27, 332);
             lblBroadcast.Margin = new Padding(2, 0, 2, 0);
             lblBroadcast.Name = "lblBroadcast";
             lblBroadcast.Size = new Size(119, 18);
@@ -675,7 +705,7 @@
             lblNet.AutoSize = true;
             lblNet.Font = new Font("Imprint MT Shadow", 9F, FontStyle.Bold);
             lblNet.ForeColor = Color.FromArgb(103, 32, 170);
-            lblNet.Location = new Point(72, 290);
+            lblNet.Location = new Point(74, 292);
             lblNet.Margin = new Padding(2, 0, 2, 0);
             lblNet.Name = "lblNet";
             lblNet.Size = new Size(72, 18);
@@ -687,7 +717,7 @@
             lblClasse.AutoSize = true;
             lblClasse.Font = new Font("Imprint MT Shadow", 9F, FontStyle.Bold);
             lblClasse.ForeColor = Color.FromArgb(103, 32, 170);
-            lblClasse.Location = new Point(53, 230);
+            lblClasse.Location = new Point(55, 232);
             lblClasse.Margin = new Padding(2, 0, 2, 0);
             lblClasse.Name = "lblClasse";
             lblClasse.Size = new Size(91, 18);
@@ -697,25 +727,40 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Imprint MT Shadow", 8F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
             label1.Location = new Point(36, 834);
             label1.Name = "label1";
             label1.Size = new Size(855, 16);
             label1.TabIndex = 3;
-            label1.Text = "Presenté par Shoayb Ali Mehenni, Florian Bridier, Ewan Le Neillon, Antoine Ménial, Usman Naveed et Enzo Vergé Dépré";
+            label1.Text = "Présenté par Shoayb Ali Mehenni, Florian Bridier, Ewan Le Neillon, Antoine Ménial, Usman Naveed et Enzo Vergé Dépré";
             // 
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(103, 32, 170);
+            label5.ForeColor = Color.White;
             label5.Location = new Point(11, 9);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
             label5.Size = new Size(307, 24);
             label5.TabIndex = 36;
             label5.Text = "Année 2023-2024 BUT INFO 1";
-            label5.Click += label5_Click;
+            // 
+            // BoutonAide
+            // 
+            BoutonAide.BackColor = Color.White;
+            BoutonAide.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold);
+            BoutonAide.ForeColor = Color.FromArgb(103, 32, 170);
+            BoutonAide.Location = new Point(738, 7);
+            BoutonAide.Name = "BoutonAide";
+            BoutonAide.Size = new Size(153, 29);
+            BoutonAide.TabIndex = 37;
+            BoutonAide.Text = "Besoin d'aide?";
+            BoutonAide.UseVisualStyleBackColor = false;
+            BoutonAide.Click += BoutonAide_Click;
             // 
             // Form1
             // 
@@ -725,6 +770,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(903, 859);
+            Controls.Add(BoutonAide);
             Controls.Add(label5);
             Controls.Add(label1);
             Controls.Add(CalculAutomatique);
@@ -799,5 +845,6 @@
         private Label label2;
         private Label label1;
         private Label label5;
+        private Button BoutonAide;
     }
 }
