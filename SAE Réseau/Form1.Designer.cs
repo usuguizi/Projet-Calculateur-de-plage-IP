@@ -82,6 +82,8 @@
             lblBroadcast = new Label();
             lblNet = new Label();
             lblClasse = new Label();
+            label1 = new Label();
+            label5 = new Label();
             grpSaisie.SuspendLayout();
             CalculAutomatique.SuspendLayout();
             SuspendLayout();
@@ -115,7 +117,7 @@
             grpSaisie.Controls.Add(txtDéc2);
             grpSaisie.Controls.Add(lblDécimal);
             grpSaisie.Controls.Add(txtDéc1);
-            grpSaisie.Location = new Point(97, 10);
+            grpSaisie.Location = new Point(97, 35);
             grpSaisie.Margin = new Padding(2);
             grpSaisie.Name = "grpSaisie";
             grpSaisie.Padding = new Padding(2);
@@ -692,6 +694,29 @@
             lblClasse.TabIndex = 0;
             lblClasse.Text = "@ de classe";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Imprint MT Shadow", 8F, FontStyle.Bold);
+            label1.Location = new Point(36, 834);
+            label1.Name = "label1";
+            label1.Size = new Size(855, 16);
+            label1.TabIndex = 3;
+            label1.Text = "Presenté par Shoayb Ali Mehenni, Florian Bridier, Ewan Le Neillon, Antoine Ménial, Usman Naveed et Enzo Vergé Dépré";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Imprint MT Shadow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(103, 32, 170);
+            label5.Location = new Point(11, 9);
+            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(307, 24);
+            label5.TabIndex = 36;
+            label5.Text = "Année 2023-2024 BUT INFO 1";
+            label5.Click += label5_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -699,7 +724,9 @@
             BackColor = Color.LavenderBlush;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(902, 840);
+            ClientSize = new Size(903, 859);
+            Controls.Add(label5);
+            Controls.Add(label1);
             Controls.Add(CalculAutomatique);
             Controls.Add(grpSaisie);
             ForeColor = Color.FromArgb(103, 32, 170);
@@ -712,6 +739,7 @@
             CalculAutomatique.ResumeLayout(false);
             CalculAutomatique.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -769,5 +797,7 @@
         private TextBox txtBin1;
         private Label label3;
         private Label label2;
+        private Label label1;
+        private Label label5;
     }
 }
